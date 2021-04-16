@@ -38,6 +38,9 @@ cli-wait-db:
 cli-migrations:
 	docker-compose run --rm php-cli ./yii migrate --interactive=0
 
+cli-migrations-down:
+	docker-compose run --rm php-cli ./yii migrate/down all --interactive=0
+
 cli-create-admin:
 	docker-compose run --rm php-cli ./yii user/create-admin
 
