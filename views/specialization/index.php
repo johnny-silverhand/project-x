@@ -1,23 +1,23 @@
 <?php
 
-use app\models\Institution;
-use app\models\InstitutionSearch;
+use app\models\Specialization;
+use app\models\SpecializationSearch;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\web\View;
 
 /* @var $this View */
-/* @var $searchModel InstitutionSearch */
+/* @var $searchModel SpecializationSearch */
 /* @var $dataProvider ActiveDataProvider */
 
-$this->title = 'Организации';
+$this->title = 'Специализации';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="institution-index">
+<div class="specialization-index">
 
     <p>
-        <?= Html::a('Добавить организацию', ['create'], ['class' => 'myBtn']) ?>
+        <?= Html::a('Добавить специализацию', ['create'], ['class' => 'myBtn']) ?>
     </p>
     <br>
 
@@ -27,14 +27,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
+            'code',
             [
                 'attribute' => 'name',
-                'value' => function (Institution $model) {
+                'value' => function (Specialization $model) {
                     return Html::a($model->name, ['view', 'id' => $model->id]);
                 },
                 'format' => 'html',
             ],
-            'is_admin:boolean',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

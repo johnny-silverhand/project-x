@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'is_admin')->checkbox() ?>
 
         <div class="form-group">
-            <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton('Сохранить', ['class' => 'myBtn']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>
