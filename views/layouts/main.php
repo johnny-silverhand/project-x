@@ -7,6 +7,7 @@ use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
@@ -25,51 +26,47 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
+<header class="header">
+    <div class="wrapper header__wrapper">
+        <div class=" header__headerContent">
+            <div class="logo header__logo">
+                <a href="<?= Url::to(['site/index']) ?>" title="IT animals">
+                    <img src="media/logo.jpg" alt="" />
+                </a>
+            </div>
+            <ul class="header__list">
+                <li class="header__list-item">
+                    <?= Html::a('Главная', ['site/index'], ['class' => 'header__list-link']) ?>
+                </li>
+                <li class="header__list-item">
+                    <?= Html::a('Запросы', ['request/index'], ['class' => 'header__list-link']) ?>
+                </li>
+                <li class="header__list-item">
+                    <?= Html::a('Организации', ['institution/index'], ['class' => 'header__list-link']) ?>
+                </li>
 
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Главная', 'url' => ['/site/index']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Вход', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Выход (' . Yii::$app->user->identity->getId() . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();
-    ?>
-
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
+                <li class="header__list-item">
+                    <?= Html::a('Выход', ['site/logout'], ['class' => 'black header__list-link']) ?>
+                </li>
+            </ul>
+        </div>
     </div>
-</div>
+</header>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; <?= date('Y') ?></p>
+<main class="content">
+    <div class="wrapper">
+        <div class="pageTitle content__pageTitle">
+            <h1><b><?= $this->title ?></b></h1>
+        </div>
+        <br>
+        <div class="content__minContent mt10 ">
+            <div class="content__tableWrapper">
+                <div class="content__btnSizeTable"></div>
+                    <?= $content ?>
+            </div>
+        </div>
     </div>
-</footer>
+</main>
 
 <?php $this->endBody() ?>
 </body>

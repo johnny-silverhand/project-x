@@ -44,7 +44,7 @@ $this->title = 'Регистрация';
     </div>
 
     <div class="col-md-12 text-center" style="padding-top: 20px;">
-        <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton('Зарегистрироваться', ['class' => 'myBtn myBtn--accent']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
