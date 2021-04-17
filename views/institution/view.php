@@ -12,7 +12,7 @@ use yii\widgets\DetailView;
 /* @var $dataGrid string */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Организации', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Учреждения', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 YiiAsset::register($this);
 ?>

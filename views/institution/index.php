@@ -11,13 +11,13 @@ use yii\web\View;
 /* @var $searchModel InstitutionSearch */
 /* @var $dataProvider ActiveDataProvider */
 
-$this->title = 'Организации';
+$this->title = 'Учреждения';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="institution-index">
 
     <p>
-        <?= Html::a('Добавить организацию', ['create'], ['class' => 'myBtn myBtn--accent']) ?>
+        <?= Html::a('Добавить учреждение', ['create'], ['class' => 'myBtn myBtn--accent']) ?>
     </p>
     <br>
 
