@@ -22,10 +22,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php $form = ActiveForm::begin([
             'action' => ['student/create', 'institutionId' => $model->institution_id],
+            'options' => ['enctype' => 'multipart/form-data'],
         ]);
         ?>
 
         <?= $form->field($model, 'content')->widget(CKEditor::class) ?>
+        <br>
+
+        <?= Html::fileInput('file') ?>
         <br>
 
         <div class="form-group">
