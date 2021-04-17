@@ -43,7 +43,7 @@ class StudyRequest extends \yii\db\ActiveRecord
             [['institution_id', 'specialization_id', 'fio'], 'required'],
             [['institution_id', 'specialization_id', 'invalid', 'score', 'rate'], 'default', 'value' => null],
             [['institution_id', 'specialization_id', 'invalid', 'rate'], 'integer'],
-            [['score'], 'number'],
+            [['score'], 'number', 'max' => 5],
             [['budget', 'orphan', 'with_docs', 'invited'], 'boolean'],
             [['fio'], 'string', 'max' => 100],
             [['institution_id'], 'exist', 'skipOnError' => true, 'targetClass' => Institution::class, 'targetAttribute' => ['institution_id' => 'id']],

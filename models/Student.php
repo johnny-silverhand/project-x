@@ -29,6 +29,7 @@ class Student extends ActiveRecord
 {
     public $institution_id;
     public $specialization_id;
+    public $content = '';
 
     public $cntBudget = 0;
     public $cntOrphan = 0;
@@ -47,11 +48,13 @@ class Student extends ActiveRecord
     public function rules()
     {
         return [
+            [['fio', 'birthdate', 'date_start', 'date_end', 'group_id', 'status'], 'required'],
             [['birthdate', 'date_start', 'date_end'], 'safe'],
             [['budget', 'orphan', 'employed'], 'boolean'],
             [['status', 'group_id'], 'default', 'value' => null],
             [['status', 'group_id', 'invalid'], 'integer'],
             [['fio'], 'string', 'max' => 100],
+            [['content'], 'string', 'max' => 8000],
             [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => Group::class, 'targetAttribute' => ['group_id' => 'id']],
         ];
     }
@@ -74,10 +77,11 @@ class Student extends ActiveRecord
             'specialization_id' => 'Направление',
             'group_id' => 'Группа',
             'orphan' => 'Является сиротой',
-            'cntOrphan' => 'Признак сироты',
+            'cntOrphan' => 'Является сиротой',
             'invalid' => 'Инвалидность',
             'employed' => 'Трудоустроен после обучения',
             'cntEmployed' => 'Трудоустроен после обучения',
+            'content' => 'Неформализованные данные'
         ];
     }
 

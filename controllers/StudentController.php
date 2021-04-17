@@ -97,15 +97,30 @@ class StudentController extends Controller
     {
         $model = new Student();
         $model->status = Repository::STUDENT_WORK;
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if($model->load(Yii::$app->request->post()) && $model->content && !$model->fio) {
+            $extractor = new \app\services\Extractor($model->content);
+            $result = $extractor->searchData();
+            $model->attributes = $result->attributes;
+        } elseif ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['institution/view', 'id' => $model->group->institution_id]);
         }
 
         return $this->render('_form', [
             'model' => $model,
-            //'specializations' => Specialization::getList(),
             'groups' => Group::getList($institutionId, true),
+        ]);
+    }
+
+    /**
+     * @return string|Response
+     */
+    public function actionRaw(int $institutionId): Response|string
+    {
+        $model = new Student();
+        $model->institution_id = $institutionId;
+
+        return $this->render('raw', [
+            'model' => $model,
         ]);
     }
 

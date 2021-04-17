@@ -21,7 +21,7 @@ use yii\web\View;
 
     <p>
         <?= Html::a('Приказ о зачислении', ['student/create', 'institutionId' => $searchModel->institution_id], ['class' => 'myBtn myBtn--accent']) ?>
-        <?= Html::a('Загрузка неформализованных данных', ['load', 'institutionId' => $searchModel->institution_id], ['class' => 'myBtn myBtn--accent']) ?>
+        <?= Html::a('Загрузка неформализованных данных', ['student/raw', 'institutionId' => $searchModel->institution_id], ['class' => 'myBtn myBtn--accent']) ?>
     </p>
     <br>
 

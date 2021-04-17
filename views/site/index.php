@@ -14,5 +14,11 @@ $this->title = 'Главная';
     <br>
     <br>
     <?= Html::a('Специализации', ['specialization/index'], ['class' => 'myBtn myBtn--accent']) ?>
+    <br>
+    <br>
+    <?= Html::a('Отчет по контенгенту', ['student/index'], ['class' => 'myBtn myBtn--accent']) ?>
+    <br>
+    <br>
+    <?= Html::a('Отчет департамента', ['student/index', 'mode' => \app\models\StudentSearch::CNT_MODE], ['class' => 'myBtn myBtn--accent']) ?>
 
 </div>

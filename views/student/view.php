@@ -24,7 +24,6 @@ YiiAsset::register($this);
     <p>
         <?= Html::a('Приказ о переводе', ['move', 'id' => $model->id], ['class' => 'myBtn myBtn--grey']) ?>
         <?= Html::a('Приказ об отчислении', ['deduction', 'id' => $model->id], ['class' => 'myBtn myBtn--red']) ?>
-        <?= Html::a('Загрузка неформализованных данных', ['load', 'institutionId' => $model->id], ['class' => 'myBtn myBtn--accent']) ?>
         <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'myBtn myBtn--accent']) ?>
     </p>
 

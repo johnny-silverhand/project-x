@@ -92,7 +92,7 @@ class Group extends \yii\db\ActiveRecord
         $models = $query->orderBy('id')->all();
         $list = [];
         foreach($models as $model) {
-            $list[$model->id] = $model->code;
+            $list[$model->id] = $model->code. "({$model->specialization->name})";
         }
         return $list;
     }
