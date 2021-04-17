@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\InstitutionDataSearch;
 use app\models\StudentSearch;
+use app\models\Group;
 use app\models\Specialization;
 use app\repositories\Repository;
 use Yii;
@@ -94,6 +95,7 @@ class InstitutionController extends Controller
         return $this->renderPartial('/student/institution_index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'groups' => Group::getList($model->id),
             'specializations' => Specialization::getList(),
             'statuses' => $this->repository->getStudentStatuses(),
         ]);

@@ -19,7 +19,7 @@ class StudentSearch extends Student
     public function rules()
     {
         return [
-            [['id', 'status', 'institution_id', 'specialization_id'], 'integer'],
+            [['id', 'status', 'institution_id', 'specialization_id', 'group_id'], 'integer'],
             [['fio', 'birthdate', 'date_start', 'date_end'], 'safe'],
             [['budget'], 'boolean'],
             [['birthdateStart', 'birthdateEnd'], 'date', 'format' => 'd.m.Y'],
@@ -45,6 +45,7 @@ class StudentSearch extends Student
     public function search($params)
     {
         $query = Student::find();
+        $query->joinWith('group g');
 
         // add conditions that should always apply here
 
@@ -68,8 +69,9 @@ class StudentSearch extends Student
             'date_start' => $this->date_start,
             'date_end' => $this->date_end,
             'status' => $this->status,
-            'institution_id' => $this->institution_id,
-            'specialization_id' => $this->specialization_id,
+            'group_id' => $this->group_id,
+            'g.institution_id' => $this->institution_id,
+            'g.specialization_id' => $this->specialization_id,
         ]);
 
         if ($this->birthdateStart && $this->birthdateEnd) {

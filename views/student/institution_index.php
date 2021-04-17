@@ -12,6 +12,7 @@ use yii\web\View;
 /* @var $dataProvider ActiveDataProvider */
 /* @var $specializations array */
 /* @var $statuses array */
+/* @var $groups array */
 
 //$this->title = 'Студенты';
 //$this->params['breadcrumbs'][] = $this->title;
@@ -38,9 +39,16 @@ use yii\web\View;
             [
                 'attribute' => 'specialization_id',
                 'value' => function(Student $student) {
-                    return $student->specialization->code.' - '.$student->specialization->name;
+                    return $student->group->specialization->code.' - '.$student->group->specialization->name;
                 },
                 'filter' => $specializations,
+            ],
+            [
+                'attribute' => 'group_id',
+                'value' => function(Student $student) {
+                    return $student->group->code;
+                },
+                'filter' => $groups,
             ],
             [
                 'attribute' => 'status',

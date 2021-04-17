@@ -9,6 +9,7 @@ use dosamigos\datepicker\DatePicker;
 /* @var $this View */
 /* @var $model Student */
 /* @var $form ActiveForm */
+/* @var $groups array */
 /* @var $specializations array */
 
 $this->title = $model->isNewRecord ? 'Добавить студента' : 'Редактировать студента';
@@ -29,6 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'budget')->checkbox() ?>
 
+        <?= $form->field($model, 'group_id')->dropDownList($groups) ?>
+
         <?= $form->field($model, 'date_start')->widget(DatePicker::class, [
             'language' => 'ru',
         ]) ?>
@@ -37,7 +40,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'language' => 'ru',
         ]) ?>
 
-        <?= $form->field($model, 'specialization_id')->dropDownList($specializations) ?>
 
         <div class="form-group">
             <?= Html::submitButton('Сохранить', ['class' => 'myBtn myBtn--accent']) ?>

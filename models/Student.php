@@ -21,14 +21,14 @@ use yii\db\ActiveRecord;
  * @property bool|null $orphan признак сироты
  * @property int|null $invalid инвалидность
  * @property bool|null $employed трудоустроен после окончания
- * @property int|null $institution_id ИД Организации
- * @property int|null $specialization_id ИД Специализации
+ * @property int|null $group_id ИД Группы
  *
- * @property Institution $institution
- * @property Specialization $specialization
+ * @property Group $group
  */
 class Student extends ActiveRecord
 {
+    public $institution_id;
+    public $specialization_id;
     /**
      * {@inheritdoc}
      */
@@ -45,11 +45,10 @@ class Student extends ActiveRecord
         return [
             [['birthdate', 'date_start', 'date_end'], 'safe'],
             [['budget', 'orphan', 'employed'], 'boolean'],
-            [['status', 'institution_id', 'specialization_id'], 'default', 'value' => null],
-            [['status', 'institution_id', 'specialization_id', 'invalid'], 'integer'],
+            [['status', 'group_id'], 'default', 'value' => null],
+            [['status', 'group_id', 'invalid'], 'integer'],
             [['fio'], 'string', 'max' => 100],
-            [['institution_id'], 'exist', 'skipOnError' => true, 'targetClass' => Institution::class, 'targetAttribute' => ['institution_id' => 'id']],
-            [['specialization_id'], 'exist', 'skipOnError' => true, 'targetClass' => Specialization::class, 'targetAttribute' => ['specialization_id' => 'id']],
+            [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => Group::class, 'targetAttribute' => ['group_id' => 'id']],
         ];
     }
 
@@ -68,29 +67,20 @@ class Student extends ActiveRecord
             'status' => 'Статус',
             'institution_id' => 'Учреждение',
             'specialization_id' => 'Направление',
+            'group_id' => 'Группа',
             'orphan' => 'Признак сироты',
             'invalid' => 'Инвалидность',
-            'employed' => 'Трудоустроен после обучения',            
+            'employed' => 'Трудоустроен после обучения',
         ];
     }
 
     /**
-     * Gets query for [[Institution]].
+     * Gets query for [[Group]].
      *
      * @return ActiveQuery
      */
-    public function getInstitution(): ActiveQuery
+    public function getGroup(): ActiveQuery
     {
-        return $this->hasOne(Institution::class, ['id' => 'institution_id']);
-    }
-
-    /**
-     * Gets query for [[Specialization]].
-     *
-     * @return ActiveQuery
-     */
-    public function getSpecialization(): ActiveQuery
-    {
-        return $this->hasOne(Specialization::class, ['id' => 'specialization_id']);
+        return $this->hasOne(Group::class, ['id' => 'group_id']);
     }
 }
