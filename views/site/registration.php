@@ -9,6 +9,7 @@ use yii\web\View;
 /* @var $this View */
 /* @var $model RegistrationForm */
 /* @var $institutions array */
+/* @var $roles array */
 
 
 $this->title = 'Регистрация';
@@ -33,6 +34,7 @@ $this->title = 'Регистрация';
     <?= $form->field($model, 'name')->textInput()->label($model->getAttributeLabel('name') . ' *') ?>
     <?= $form->field($model, 'email')->textInput()->label('Email *') ?>
     <?= $form->field($model, 'institution_id')->dropDownList($institutions)->label('Организация *') ?>
+    <?= $form->field($model, 'role_id')->dropDownList($roles)->label('Роль *') ?>
 
     <?= $form->field($model, 'about')->textarea(['rows' => 6]) ?>
 

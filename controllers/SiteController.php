@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\ContactForm;
 use app\models\Institution;
+use app\models\Role;
 use app\models\User;
 use app\security\LoginForm;
 use app\security\RegistrationForm;
@@ -112,6 +113,7 @@ class SiteController extends Controller
         return $this->render('registration', [
             'model' => $model,
             'institutions' => $institutions,
+            'roles' => Role::getGlobalList(),
         ]);
     }
 

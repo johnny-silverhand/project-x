@@ -3,7 +3,9 @@
 namespace app\security;
 
 use app\models\Institution;
+use app\models\Role;
 use app\models\User;
+use app\models\UserRole;
 use Yii;
 use yii\base\Model;
 use yii\helpers\Url;
@@ -61,6 +63,11 @@ class RegistrationForm extends Model
     public int $institution_id = 0;
 
     /**
+     * @var int
+     */
+    public int $role_id = 0;
+
+    /**
      * @return array
      */
     public function rules()
@@ -76,6 +83,7 @@ class RegistrationForm extends Model
             [['email'], 'filter', 'filter' => fn($email) => mb_strtolower(trim($email), 'UTF-8')],
             [['email'], 'unique', 'targetClass' => User::class, 'message' => 'Пользователь с таким email уже зарегистрирован!'],
             [['institution_id'], 'exist', 'skipOnError' => true, 'targetClass' => Institution::class, 'targetAttribute' => ['institution_id' => 'id']],
+            [['role_id'], 'exist', 'skipOnError' => true, 'targetClass' => Role::class, 'targetAttribute' => ['role_id' => 'id']],
         ];
     }
 
@@ -102,6 +110,7 @@ class RegistrationForm extends Model
             'password' => 'Пароль',
             'password_confirm' => 'Повторить пароль',
             'about' => 'О себе',
+            'role_id' => 'Роль',
         ];
     }
 
@@ -143,7 +152,12 @@ class RegistrationForm extends Model
         $user->password_hash = Yii::$app->security->generatePasswordHash($this->password);
         $user->about = $this->about;
         $user->institution_id = $this->institution_id;
-        $user->save();
+        if ($user->save()) {
+            $userRole = new UserRole();
+            $userRole->user_id = $user->id;
+            $userRole->role_id = $this->role_id;
+            $userRole->save();
+        }
         return $user;
     }
 

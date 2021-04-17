@@ -19,6 +19,9 @@ class m210416_175516_create_role_table extends Migration
 
         $this->batchInsert('role', ['name'], [
             ['администратор'],
+            ['абитуриент'],
+            ['сотрудник СУЗа'],
+            ['сотрудник департамента'],
         ]);
     }
 

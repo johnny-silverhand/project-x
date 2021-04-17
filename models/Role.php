@@ -18,6 +18,19 @@ use yii\db\ActiveRecord;
 class Role extends ActiveRecord
 {
     public const ADMIN = 1;
+    public const STUDENT = 2;
+    public const WORKER_SUZ = 3;
+    public const WORKER_DEP = 4;
+
+    public static function getGlobalList(): array
+    {
+        return [
+            self::STUDENT => 'абитуриент',
+            self::WORKER_SUZ => 'сотрудник СУЗа',
+            self::WORKER_DEP => 'сотрудник департамента',
+            self::ADMIN => 'администратор сервиса',
+        ];
+    }
 
     /**
      * {@inheritdoc}

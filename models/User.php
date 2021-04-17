@@ -95,4 +95,19 @@ class User extends ActiveRecord
         return $this->getUserRoles()->andWhere(['role_id' => Role::ADMIN])->count() ? true : false;
     }
 
+    public function getIsStudent(): bool
+    {
+        return $this->getUserRoles()->andWhere(['role_id' => Role::STUDENT])->count() ? true : false;
+    }
+
+    public function getIsWorkerSuz(): bool
+    {
+        return $this->getUserRoles()->andWhere(['role_id' => Role::WORKER_SUZ])->count() ? true : false;
+    }
+
+    public function getIsWorkerDep(): bool
+    {
+        return $this->getUserRoles()->andWhere(['role_id' => Role::WORKER_DEP])->count() ? true : false;
+    }
+
 }
