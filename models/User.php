@@ -20,6 +20,7 @@ use yii\db\ActiveRecord;
  *
  * @property UserRole[] $userRoles
  * @property Institution $institution
+ * @property bool $isAdmin
  */
 class User extends ActiveRecord
 {
@@ -44,6 +45,7 @@ class User extends ActiveRecord
             [['password_hash'], 'string', 'max' => 64],
             [['email'], 'unique'],
             [['institution_id'], 'exist', 'skipOnError' => true, 'targetClass' => Institution::class, 'targetAttribute' => ['institution_id' => 'id']],
+            [['image'], 'string'],
         ];
     }
 
@@ -59,6 +61,7 @@ class User extends ActiveRecord
             'email' => 'Email',
             'password_hash' => 'Хеш пароля',
             'about' => 'О себе',
+            'image' => 'Фото',
         ];
     }
 
@@ -84,6 +87,11 @@ class User extends ActiveRecord
     public function getInstitution(): ActiveQuery
     {
         return $this->hasOne(Institution::class, ['id' => 'institution_id']);
+    }
+
+    public function getIsAdmin(): bool
+    {
+        return $this->getUserRoles()->andWhere(['role_id' => Role::ADMIN])->count() ? true : false;
     }
 
 }

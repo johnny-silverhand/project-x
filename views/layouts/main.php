@@ -46,6 +46,14 @@ AppAsset::register($this);
                 </li>
                 <?php if(!Yii::$app->getUser()->isGuest): ?>
                 <li class="header__list-item">
+                    <div class="header__avatar">
+                        <a href="<?= Url::to(['user/view', 'id' => Yii::$app->getUser()->getId()]) ?>">
+                            <img width="45px"
+                                 height="45px"
+                                 title='Профиль пользователя'
+                                 src="media/no_avatar.png"
+                                 alt="" class="img-circle"></a>
+                    </div>
                     <?= Html::a('Выход', ['site/logout'], ['class' => 'black header__list-link']) ?>
                 </li>
                 <?php endif; ?>
@@ -62,7 +70,7 @@ AppAsset::register($this);
         <br>
         <?=
         Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            'links' => $this->params['breadcrumbs'] ?? [],
         ])
         ?>
         <div class="content__minContent mt10 ">
