@@ -1,11 +1,15 @@
 <?php
 
+use app\models\StudentSearch;
 use yii\helpers\Html;
+use yii\web\View;
 use yii\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\StudentSearch */
-/* @var $form yii\widgets\ActiveForm */
+/* @var $this View */
+/* @var $model StudentSearch */
+/* @var $form ActiveForm */
+/* @var $invalidTypes array */
+
 ?>
 
 <div class="student-search">
@@ -34,7 +38,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'orphan')->checkbox() ?>
 
-    <?php // echo $form->field($model, 'invalid') ?>
+    <?php echo $form->field($model, 'invalid')->dropDownList($invalidTypes) ?>
 
     <?php // echo $form->field($model, 'employed')->checkbox() ?>
 

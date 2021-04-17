@@ -14,6 +14,7 @@ use yii\widgets\Pjax;
 /* @var $statuses array */
 /* @var $specializations array */
 /* @var $institutions array */
+/* @var $invalidTypes array */
 
 $this->title = 'Студенты';
 $this->params['breadcrumbs'][] = $this->title;
@@ -26,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <br>
 
     <?php Pjax::begin(); ?>
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php echo $this->render('_search', ['model' => $searchModel, 'invalidTypes' => $invalidTypes]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -46,8 +47,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $statuses[$model->status] ?? "";
                 },
             ],
-            /*'orphan:boolean',
-            'invalid',*/
+            /*'orphan:boolean',*/
+            [
+                'attribute' => 'invalid',
+                'value' => function (Student $model) use ($invalidTypes) {
+                    return $invalidTypes[$model->invalid] ?? "";
+                },
+            ],
             'employed:boolean',
             [
                 'attribute' => 'institution_id',
