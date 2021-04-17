@@ -84,10 +84,12 @@ class SiteController extends Controller
                 'id' => $institution->id,
                 'name' => $institution->name,
                 'children' => [
-                    ['name' => 'бюджет', 'id' => 1, 'value' => $institution->getCountBudget()],
+                    /*['name' => 'бюджет', 'id' => 1, 'value' => $institution->getCountBudget()],
                     ['name' => 'внебюджет', 'id' => 1, 'value' => $institution->getCountNotBudget()],
                     ['name' => 'сироты', 'id' => 1, 'value' => $institution->getCountOrphan()],
-                    ['name' => 'инвалиды', 'id' => 1, 'value' => $institution->getCountInvalid()],
+                    ['name' => 'инвалиды', 'id' => 1, 'value' => $institution->getCountInvalid()],*/
+                    ['name' => 'поступившие', 'id' => 1, 'value' => $institution->getCountStudyRequestInvited()],
+                    ['name' => 'не поступившие', 'id' => 1, 'value' => $institution->getCountStudyRequestNotInvited()],
                 ],
             ];
         }

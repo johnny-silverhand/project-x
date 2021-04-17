@@ -135,4 +135,16 @@ class Institution extends ActiveRecord
         return $query->count();
     }
 
+    public function getCountStudyRequestInvited(): int
+    {
+        $query = StudyRequest::find()->andWhere(['institution_id' => $this->id, 'invited' => true]);
+        return $query->count();
+    }
+
+    public function getCountStudyRequestNotInvited(): int
+    {
+        $query = StudyRequest::find()->andWhere(['institution_id' => $this->id, 'invited' => false]);
+        return $query->count();
+    }
+
 }
