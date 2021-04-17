@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Institution;
 use Yii;
+use yii\web\UploadedFile;
 use app\models\Student;
 use app\models\Specialization;
 use app\models\Group;
@@ -97,7 +98,29 @@ class StudentController extends Controller
     {
         $model = new Student();
         $model->status = Repository::STUDENT_WORK;
-        if($model->load(Yii::$app->request->post()) && $model->content && !$model->fio) {
+        $file = UploadedFile::getInstanceByName('file');
+        if($file) {
+            $officeMimes = [
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'application/msword',
+                'application/vnd.oasis.opendocument.text',
+            ];
+            if(in_array($file->type, ['image/jpeg', 'image/png'])) {
+                exec("tesseract -l rus+eng {$file->tempName} stdout > /tmp/tesseract.txt");
+                $content = file_get_contents('/tmp/tesseract.txt');
+            } elseif(in_array($file->type, $officeMimes)) {
+                exec("soffice --headless --convert-to html:HTML {$file->tempName}");
+                $content = file_get_contents('/tmp/pdf.html');
+            } elseif($file->type == 'application/pdf') {
+                exec("pdftohtml -dataurls -fmt png -noframes -stdout {$file->tempName} > /tmp/pdf.html");
+                $content = file_get_contents('/tmp/pdf.html');
+            } elseif($file->type == 'text/plain') {
+                $content = file_get_contents($file->tempName);
+            }
+            $extractor = new \app\services\Extractor($content);
+            $result = $extractor->searchData();
+            $model->attributes = $result->attributes;
+        } elseif($model->load(Yii::$app->request->post()) && $model->content && !$model->fio) {
             $extractor = new \app\services\Extractor($model->content);
             $result = $extractor->searchData();
             $model->attributes = $result->attributes;
