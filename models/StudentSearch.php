@@ -15,6 +15,7 @@ class StudentSearch extends Student
     public $birthdateStart;
     public $birthdateEnd;
     public $institutionIds;
+    public $specializationIds;
 
     public const DEFAULT_MODE = 1;
     public const CNT_MODE = 2;
@@ -36,7 +37,7 @@ class StudentSearch extends Student
     {
         return [
             [['id', 'status', 'institution_id', 'specialization_id', 'group_id', 'mode', 'invalid'], 'integer'],
-            [['fio', 'birthdate', 'date_start', 'date_end', 'institutionIds'], 'safe'],
+            [['fio', 'birthdate', 'date_start', 'date_end', 'institutionIds', 'specializationIds'], 'safe'],
             [['budget', 'employed', 'orphan'], 'boolean'],
             [['birthdateStart', 'birthdateEnd'], 'date', 'format' => 'd.m.Y'],
         ];
@@ -95,6 +96,9 @@ class StudentSearch extends Student
         if ($this->institutionIds) {
             $query->andFilterWhere(['g.institution_id' => $this->institutionIds]);
         }
+        if ($this->specializationIds) {
+            $query->andFilterWhere(['g.specialization_id' => $this->institutionIds]);
+        }
         $query->andFilterWhere(['budget' => $this->budget]);
 
         if ($this->mode == self::CNT_MODE) {
@@ -102,16 +106,7 @@ class StudentSearch extends Student
 
             $query->select('g.institution_id')
                 ->addSelect([
-                    'birthdate' => 'COUNT(birthdate) ',
-                    'date_start' => 'COUNT(date_start) ',
-                    'date_end' => 'COUNT(date_end) ',
-                    'status' => 'COUNT(status) ',
-                    'invalid' => 'COUNT(invalid) ',
-                    'cntBudget' => 'COALESCE(sum(CASE WHEN budget THEN 1 ELSE 0 END),0) ',
-                    'cntOrphan' => 'COALESCE(sum(CASE WHEN orphan THEN 1 ELSE 0 END),0) ',
-                    'cntEmployed' => 'COALESCE(sum(CASE WHEN employed THEN 1 ELSE 0 END),0) ',
-                    'group_id' => 'COUNT(group_id) ',
-                    'specialization_id' => 'COUNT(specialization_id) ',
+                    'cnt' => 'COUNT(*) ',
                 ]);
             $query->groupBy('g.institution_id');
 

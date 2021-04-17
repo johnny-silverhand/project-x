@@ -76,7 +76,22 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $institutions = Institution::find()->all();
+        $data = [];
+        /* @var $institutions Institution[] */
+        foreach ($institutions as $institution) {
+            $data[] = [
+                'id' => $institution->id,
+                'name' => $institution->name,
+                'children' => [
+                    ['name' => 'бюджет', 'id' => 1, 'value' => $institution->getCountBudget()],
+                    ['name' => 'внебюджет', 'id' => 1, 'value' => $institution->getCountNotBudget()],
+                    ['name' => 'сироты', 'id' => 1, 'value' => $institution->getCountOrphan()],
+                    ['name' => 'инвалиды', 'id' => 1, 'value' => $institution->getCountInvalid()],
+                ],
+            ];
+        }
+        return $this->render('index', ['data' => $data]);
     }
 
     /**

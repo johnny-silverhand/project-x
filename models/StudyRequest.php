@@ -13,7 +13,7 @@ use Yii;
  * @property int $institution_id Ид учреждения
  * @property int $specialization_id Ид направления
  * @property bool|null $budget Бюджет
- * @property bool|null $orphan Признак сироты
+ * @property bool|null $orphan Является сиротой
  * @property int|null $invalid Инвалидность
  * @property int|null $score Средний балл
  * @property int|null $rate Приоритет
@@ -63,7 +63,7 @@ class StudyRequest extends \yii\db\ActiveRecord
             'institution_id' => 'Учреждение',
             'specialization_id' => 'Направление',
             'budget' => 'Бюджет',
-            'orphan' => 'Признак сироты',
+            'orphan' => 'Является сиротой',
             'invalid' => 'Инвалидность',
             'score' => 'Средний балл',
             'rate' => 'Приоритет',

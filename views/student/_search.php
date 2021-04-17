@@ -47,7 +47,7 @@ use dosamigos\datepicker\DatePicker;
                     </div>
                     <br>
                     <div>
-                        <?= $form->field($model, 'budget')->checkbox() ?>
+                        <?= $form->field($model, 'budget')->dropDownList(["" => "", true => "Да", false => "Нет"]) ?>
                     </div>
                 </div>
                 <br>
@@ -69,7 +69,7 @@ use dosamigos\datepicker\DatePicker;
                     </div>
                     <br>
                     <div>
-                        <?= $form->field($model, 'orphan')->checkbox() ?>
+                        <?= $form->field($model, 'orphan')->dropDownList(["" => "", true => "Да", false => "Нет"]) ?>
                     </div>
                 </div>
             </div>
@@ -85,11 +85,11 @@ use dosamigos\datepicker\DatePicker;
                     </div>
                     <br>
                     <div>
-                        <?= $form->field($model, 'specialization_id')->dropDownList(["" => ""] + $specializations) ?>
+                        <?= $form->field($model, 'specializationIds')->label('Направления')->widget(Select2::class, ['data' => $specializations, 'options' => ['multiple' => true]]) ?>
                     </div>
                     <br>
                     <div>
-                        <?= $form->field($model, 'employed')->checkbox() ?>
+                        <?= $form->field($model, 'employed')->dropDownList(["" => "", true => "Да", false => "Нет"]) ?>
                     </div>
                     <div>
                         <?= $form->field($model, 'mode')->dropDownList(StudentSearch::getModeList())->hiddenInput()->label('') ?>

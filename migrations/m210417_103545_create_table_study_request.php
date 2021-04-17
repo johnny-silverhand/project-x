@@ -19,7 +19,7 @@ class m210417_103545_create_table_study_request extends Migration
             'institution_id' => $this->integer()->notNull()->comment('Ид учреждения'),
             'specialization_id' => $this->integer()->notNull()->comment('Ид направления'),
             'budget' => $this->boolean()->comment('Бюджет')->defaultValue(false),
-            'orphan' => $this->boolean()->comment('Признак сироты')->defaultValue(false),
+            'orphan' => $this->boolean()->comment('Является сиротой')->defaultValue(false),
             'invalid' => $this->integer()->comment('Инвалидность'),
             'score' => $this->float()->comment('Средний балл'),
             'rate' => $this->smallInteger()->comment('Приоритет'),
