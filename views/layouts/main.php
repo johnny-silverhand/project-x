@@ -44,10 +44,11 @@ AppAsset::register($this);
                 <li class="header__list-item">
                     <?= Html::a('Организации', ['institution/index'], ['class' => 'header__list-link']) ?>
                 </li>
-
+                <?php if(!Yii::$app->getUser()->isGuest): ?>
                 <li class="header__list-item">
                     <?= Html::a('Выход', ['site/logout'], ['class' => 'black header__list-link']) ?>
                 </li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>
