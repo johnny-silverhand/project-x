@@ -7,6 +7,7 @@ use yii\data\ActiveDataProvider;
 use kartik\grid\GridView;
 use yii\web\View;
 use yii\widgets\Pjax;
+use yii\helpers\Html;
 
 /* @var $this View */
 /* @var $searchModel StudentSearch */
@@ -35,8 +36,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => null,
+        'layout' => "{summary}\n{toolbar}\n{items}\n{pager}",
+        'toolbar'=>[
+            '{export}',
+            '{toggleData}'
+        ],
         'columns' => [
-            'fio',
+            [
+                'attribute' => 'fio',
+                'value' => function(Student $student) {
+                    return Html::a($student->fio, ['student/view', 'id' => $student->id], ['data-pjax' => 0]);
+                },
+                'format' => 'raw',
+            ],
             [
                 'attribute' => 'institution_id',
                 'value' => function (Student $model) use ($institutions) {
