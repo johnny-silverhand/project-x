@@ -91,14 +91,14 @@ class InstitutionController extends Controller
     {
         $searchModel = new StudentSearch(['institution_id' => $model->id]);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        return $this->renderPartial('/student/index', [
+        return $this->renderPartial('/student/institution_index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'specializations' => Specialization::getList(),
             'statuses' => $this->repository->getStudentStatuses(),
         ]);
     }
-    
+
 
     private function renderData(Institution $model): string
     {
