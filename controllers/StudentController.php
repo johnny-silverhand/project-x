@@ -81,7 +81,7 @@ class StudentController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),            
+            'model' => $this->findModel($id),
             'specializations' => Specialization::getList(),
             'statuses' => $this->repository->getStudentStatuses(),
         ]);
@@ -92,7 +92,7 @@ class StudentController extends Controller
      */
     public function actionCreate(int $institutionId): Response|string
     {
-        $model = new Student(); 
+        $model = new Student();
         $model->institution_id = $institutionId;
         $model->status = Repository::STUDENT_WORK;
 
@@ -144,9 +144,11 @@ class StudentController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
+        $statuses = $this->repository->getStudentStatuses();
+        unset($statuses[Repository::STUDENT_WORK]);
         return $this->render('deduction', [
             'model' => $model,
-            'statuses' => $this->repository->getStudentStatuses(),
+            'statuses' => $statuses,
         ]);
     }
 

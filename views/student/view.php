@@ -24,6 +24,7 @@ YiiAsset::register($this);
     <p>
         <?= Html::a('Приказ о переводе', ['move', 'id' => $model->id], ['class' => 'myBtn myBtn--grey']) ?>
         <?= Html::a('Приказ об отчислении', ['deduction', 'id' => $model->id], ['class' => 'myBtn myBtn--red']) ?>
+        <?= Html::a('Загрузка неформализованных данных', ['load', 'institutionId' => $model->id], ['class' => 'myBtn myBtn--accent']) ?>
         <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'myBtn myBtn--accent']) ?>
     </p>
 
@@ -32,7 +33,7 @@ YiiAsset::register($this);
         'model' => $model,
         'attributes' => [
             'fio',
-            'birthdate:date',            
+            'birthdate:date',
             [
                 'attribute' => 'institution_id',
                 'value' => $model->institution->name,
@@ -45,7 +46,7 @@ YiiAsset::register($this);
                 'attribute' => 'status',
                 'value' => key_exists($model->status, $statuses) ? $statuses[$model->status] : null,
             ],
-            'budget:boolean',                        
+            'budget:boolean',
             'date_start:date',
             'date_end:date',
         ],

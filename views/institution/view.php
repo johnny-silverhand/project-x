@@ -37,13 +37,13 @@ YiiAsset::register($this);
             'is_admin:boolean',
         ],
     ]) ?>
-    
+
     <h1>Учащиеся:</h1>
 
     <?= $studentGrid ?>
 
-    <h2>Другие сведения</h2>
+    <!--<h2>Другие сведения</h2>
 
     <?= $dataGrid ?>
-
+    --!>
 </div>

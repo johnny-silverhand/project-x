@@ -19,14 +19,15 @@ use yii\web\View;
 <div class="student-index">
 
     <p>
-        <?= Html::a('Приказ_о_зачислении', ['student/create', 'institutionId' => $searchModel->institution_id], ['class' => 'myBtn myBtn--accent']) ?>
+        <?= Html::a('Приказ о зачислении', ['student/create', 'institutionId' => $searchModel->institution_id], ['class' => 'myBtn myBtn--accent']) ?>
+        <?= Html::a('Загрузка неформализованных данных', ['load', 'institutionId' => $searchModel->institution_id], ['class' => 'myBtn myBtn--accent']) ?>
     </p>
     <br>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'columns' => [            
+        'columns' => [
             [
                 'attribute' => 'fio',
                 'value' => function(Student $student) {
