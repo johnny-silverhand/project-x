@@ -21,12 +21,12 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $form = ActiveForm::begin(); ?>
 
         <?= $form->field($model, 'specialization_id')->dropDownList($specializations) ?>
-
+            <br>
         <?= $form->field($model, 'with_docs')->checkbox() ?>
 
-
+            <br>
         <div class="form-group">
-            <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton('Сохранить', ['class' => 'myBtn myBtn--accent']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>

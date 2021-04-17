@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Group;
 use Yii;
 use app\models\StudyRequest;
 use app\models\Student;
@@ -128,7 +129,10 @@ class StudyRequestController extends Controller
             $student->birthdate = $model->birthdate;
             $student->date_start = date('01.09.Y');
             $student->date_end = date('01.07.2023');
-            $student->group_id = 1;
+            $group = Group::find()->andWhere(['institution_id' => $model->institution_id, 'specialization_id' => $model->specialization_id])->one();
+            $student->group_id = $group?->id ?: 1;
+            $student->status = Repository::STUDENT_WORK;
+            $student->budget = $model->budget;
             $student->save();
             $this->redirect(['institution/view', 'id' => $model->institution_id]);
         }

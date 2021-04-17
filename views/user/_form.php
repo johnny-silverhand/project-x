@@ -21,18 +21,18 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $form = ActiveForm::begin(); ?>
 
         <?= $form->field($model, 'image')->fileInput() ?>
-
+<br>
         <?= $form->field($model, 'surname')->textInput(['maxlength' => true]) ?>
-
+        <br>
         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
+        <br>
         <?= $form->field($model, 'about')->widget(CKEditor::class, [
             'options' => ['rows' => 6],
             'preset' => 'full'
         ]) ?>
-
+        <br>
         <div class="form-group">
-            <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton('Сохранить', ['class' => 'myBtn myBtn--accent']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>

@@ -45,13 +45,13 @@ class m210416_181242_create_student_table extends Migration
             'id' => $this->primaryKey(),
             'fio' => $this->string(100)->comment('ФИО Студента'),
             'birthdate' => $this->date()->comment('Дата рождения'),
-            'budget' => $this->boolean()->comment('Бюджет'),
+            'budget' => $this->boolean()->comment('Бюджет')->defaultValue(false),
             'date_start' => $this->date()->comment('Дата начала обучения'),
             'date_end' => $this->date()->comment('Дата конца обучения'),
             'status' => $this->integer('Статус обучения'),
-            'orphan' => $this->boolean()->comment('признак сироты'),
-            'invalid' => $this->integer('инвалидность'),
-            'employed' => $this->boolean()->comment('трудоустроен после окончания'),
+            'orphan' => $this->boolean()->defaultValue(false)->comment('признак сироты'),
+            'invalid' => $this->integer('инвалидность')->defaultValue(null),
+            'employed' => $this->boolean()->comment('трудоустроен после окончания')->defaultValue(false),
             'group_id' => $this->integer()->notNull()->comment('ИД группы'),
         ]);
 

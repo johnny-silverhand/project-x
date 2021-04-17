@@ -18,13 +18,13 @@ class m210417_103545_create_table_study_request extends Migration
             'birthdate' => $this->date()->comment('Дата рождения'),
             'institution_id' => $this->integer()->notNull()->comment('Ид учреждения'),
             'specialization_id' => $this->integer()->notNull()->comment('Ид направления'),
-            'budget' => $this->boolean()->comment('Бюджет'),
-            'orphan' => $this->boolean()->comment('Признак сироты'),
+            'budget' => $this->boolean()->comment('Бюджет')->defaultValue(false),
+            'orphan' => $this->boolean()->comment('Признак сироты')->defaultValue(false),
             'invalid' => $this->integer()->comment('Инвалидность'),
             'score' => $this->float()->comment('Средний балл'),
             'rate' => $this->smallInteger()->comment('Приоритет'),
-            'with_docs' => $this->boolean()->comment('Предоставлены оригиналы документов'),
-            'invited' => $this->boolean()->comment('Зачислен'),
+            'with_docs' => $this->boolean()->comment('Предоставлены оригиналы документов')->defaultValue(false),
+            'invited' => $this->boolean()->comment('Зачислен')->defaultValue(false),
         ]);
 
         $this->createIndex('idx_study_request_institution_id', '{{%study_request}}', 'institution_id');

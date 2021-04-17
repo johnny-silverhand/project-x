@@ -43,7 +43,8 @@ YiiAsset::register($this);
 <br>
     <?= $studentGrid ?>
 
-    <h1>Приемная комиссия:</h1>
+    <h3>Приемная комиссия:</h3>
+<br>
 
     <?= $requestGrid ?>
 

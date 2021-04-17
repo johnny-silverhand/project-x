@@ -15,9 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="study-request-view">
 
     <p>
-        <?= Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'myBtn']) ?>
     </p>
-
+<br>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
