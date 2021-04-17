@@ -19,7 +19,7 @@ use dosamigos\datepicker\DatePicker;
 
 <div class="student-search">
 
-    <div class="content__formWrapper ">
+    <div class="content__formWrapper content__formWrapper--top">
         <?php $form = ActiveForm::begin([
             'action' => ['index'],
             'method' => 'get',

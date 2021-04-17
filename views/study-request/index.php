@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <p>
-        <?= Html::a('Подать заявление', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Подать заявление', ['create'], ['class' => 'myBtn myBtn--accent']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -22,6 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'layout' => "{summary}<br>{items}<br>{pager}",
         'columns' => [
             'id',
             'fio',
