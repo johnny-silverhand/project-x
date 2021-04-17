@@ -36,7 +36,7 @@ use yii\widgets\ListView;
             <span><?= $model->email ?></span>
         </li>
         <li>
-            <span><b>Учреждение:&nbsp;</b></span>
+            <span><b>Профессиональная организация:&nbsp;</b></span>
             <span><?= $model->institution->name ?></span>
         </li>
         <li class="card__about">
