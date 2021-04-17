@@ -1,6 +1,7 @@
 <?php
 
 use app\models\StudentSearch;
+use kartik\select2\Select2;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\ActiveForm;
@@ -79,7 +80,8 @@ use dosamigos\datepicker\DatePicker;
                     </div>
                     <br>
                     <div>
-                        <?= $form->field($model, 'institution_id')->dropDownList(["" => ""] + $institutions) ?>
+
+                        <?= $form->field($model, 'institutionIds')->label('Учреждения')->widget(Select2::class, ['data' => $institutions, 'options' => ['multiple' => true]]) ?>
                     </div>
                     <br>
                     <div>

@@ -13,6 +13,7 @@ class StudentSearch extends Student
 {
     public $birthdateStart;
     public $birthdateEnd;
+    public $institutionIds;
     /**
      * {@inheritdoc}
      */
@@ -20,7 +21,7 @@ class StudentSearch extends Student
     {
         return [
             [['id', 'status', 'institution_id', 'specialization_id', 'group_id'], 'integer'],
-            [['fio', 'birthdate', 'date_start', 'date_end'], 'safe'],
+            [['fio', 'birthdate', 'date_start', 'date_end', 'institutionIds'], 'safe'],
             [['budget'], 'boolean'],
             [['birthdateStart', 'birthdateEnd'], 'date', 'format' => 'd.m.Y'],
         ];
@@ -73,6 +74,10 @@ class StudentSearch extends Student
             'g.institution_id' => $this->institution_id,
             'g.specialization_id' => $this->specialization_id,
         ]);
+
+        if ($this->institutionIds) {
+            $query->andFilterWhere(['g.institution_id' => $this->institutionIds]);
+        }
 
         if ($this->birthdateStart && $this->birthdateEnd) {
             $query->andFilterWhere(['between', 'birthdate', $this->birthdateStart, $this->birthdateEnd]);
