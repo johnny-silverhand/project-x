@@ -36,26 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => null,
         'columns' => [
-            'id',
             'fio',
-            'birthdate',
-            'budget:boolean',
-            'date_start',
-            'date_end',
-            [
-                'attribute' => 'status',
-                'value' => function (Student $model) use ($statuses) {
-                    return $statuses[$model->status] ?? "";
-                },
-            ],
-            'orphan:boolean',
-            [
-                'attribute' => 'invalid',
-                'value' => function (Student $model) use ($invalidTypes) {
-                    return $invalidTypes[$model->invalid] ?? "";
-                },
-            ],
-            'employed:boolean',
             [
                 'attribute' => 'institution_id',
                 'value' => function (Student $model) use ($institutions) {
@@ -68,6 +49,24 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $specializations[$model->specialization_id] ?? "";
                 }
             ],
+            [
+                'attribute' => 'status',
+                'value' => function (Student $model) use ($statuses) {
+                    return $statuses[$model->status] ?? "";
+                },
+            ],
+            'budget:boolean',
+            'date_start',
+            'date_end',
+            'birthdate',
+            'orphan:boolean',
+            [
+                'attribute' => 'invalid',
+                'value' => function (Student $model) use ($invalidTypes) {
+                    return $invalidTypes[$model->invalid] ?? "";
+                },
+            ],
+            'employed:boolean',
         ],
     ]); ?>
 

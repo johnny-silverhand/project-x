@@ -26,6 +26,10 @@ use dosamigos\datepicker\DatePicker;
         ],
     ]); ?>
 
+    <?= $form->field($model, 'institution_id')->dropDownList($institutions) ?>
+
+    <?= $form->field($model, 'specialization_id')->dropDownList($specializations) ?>
+
     <?= $form->field($model, 'fio') ?>
 
     <?= $form->field($model, 'birthdate')->widget(DatePicker::class, [
