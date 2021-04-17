@@ -1,15 +1,19 @@
 <?php
 
+use app\models\StudentSearch;
 use yii\helpers\Html;
+use yii\web\View;
 use yii\widgets\ActiveForm;
 use dosamigos\datepicker\DatePicker;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\StudentSearch */
-/* @var $form yii\widgets\ActiveForm */
 /* @var $statuses array */
 /* @var $specializations array */
 /* @var $institutions array */
+/* @var $this View */
+/* @var $model StudentSearch */
+/* @var $form ActiveForm */
+/* @var $invalidTypes array */
+
 ?>
 
 <div class="student-search">
@@ -42,7 +46,7 @@ use dosamigos\datepicker\DatePicker;
 
     <?= $form->field($model, 'orphan')->checkbox() ?>
 
-    <?= $form->field($model, 'invalid') ?>
+    <?php echo $form->field($model, 'invalid')->dropDownList($invalidTypes) ?>
 
     <?= $form->field($model, 'employed')->checkbox() ?>
 

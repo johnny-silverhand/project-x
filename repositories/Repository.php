@@ -74,5 +74,20 @@ final class Repository
     {
         return self::getStatuses()[$code] ?? "";
     }
+
+    public const INVALID_NONE = null;
+    public const INVALID_1 = 1;
+    public const INVALID_2 = 2;
+    public const INVALID_3 = 3;
+
+    public function getInvalidTypes(): array
+    {
+        return [
+            self::INVALID_NONE => 'нет',
+            self::INVALID_1 => '1 группа',
+            self::INVALID_2 => '2 группа',
+            self::INVALID_3 => '3 группа',
+        ];
+    }
 }
 

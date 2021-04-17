@@ -14,6 +14,7 @@ use yii\widgets\Pjax;
 /* @var $statuses array */
 /* @var $specializations array */
 /* @var $institutions array */
+/* @var $invalidTypes array */
 
 $this->title = 'Студенты';
 $this->params['breadcrumbs'][] = $this->title;
@@ -28,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'specializations'  => $specializations,
         'statuses' => $statuses,
         'institutions' => $institutions,
+        'invalidTypes' => $invalidTypes,
     ]); ?>
 
     <?= GridView::widget([
@@ -47,7 +49,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             'orphan:boolean',
-            'invalid:boolean',
+            [
+                'attribute' => 'invalid',
+                'value' => function (Student $model) use ($invalidTypes) {
+                    return $invalidTypes[$model->invalid] ?? "";
+                },
+            ],
             'employed:boolean',
             [
                 'attribute' => 'institution_id',

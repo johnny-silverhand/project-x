@@ -71,6 +71,7 @@ class StudentController extends Controller
             'specializations'  => Specialization::getList(),
             'statuses' => $this->repository->getStudentStatuses(),
             'institutions' => Institution::getList(),
+            'invalidTypes' => $this->repository->getInvalidTypes(),
         ]);
     }
 
