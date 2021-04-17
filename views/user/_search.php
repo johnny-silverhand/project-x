@@ -11,32 +11,37 @@ use yii\web\View;
 
 ?>
 
-<div class="user-search">
-
-    <?php $form = ActiveForm::begin([
-        'action' => ['index'],
-        'method' => 'get',
-        //'layout' => 'horizontal',
-        'options' => [
-            'data-pjax' => 1
+<?php $form = ActiveForm::begin([
+    'action' => ['index'],
+    'method' => 'get',
+    //'layout' => 'horizontal',
+    'fieldConfig' => [
+        'template' => "{label}\n{input}\n",
+        'horizontalCssClasses' => [
+            'label' => '',
+            'offset' => '',
+            'wrapper' => '',
+            'error' => '',
+            'hint' => '',
         ],
-    ]); ?>
-
-    <div class="col-md-3">
-        <?= $form->field($model, 'surname') ?>
-    </div>
-
-    <div class="col-md-3">
-        <?= $form->field($model, 'email') ?>
-    </div>
-
-    <div class="col-md-3">
-        <p class="content__button-wrapper pull-left" style="margin-top: 23px;">
-            <?= Html::submitButton('Поиск', ['class' => 'myButton myButton--blue']) ?>
-        </p>
-    </div>
+    ],
+    'options' => [
+        'data-pjax' => 1,
+        'class' => 'contentFilters__form',
+    ],
+]); ?>
 
 
-    <?php ActiveForm::end(); ?>
+        <div class="contentFilters__form--group">
+            <?= $form->field($model, 'name')->textInput(['class' => 'form-control myForm']) ?>
+        </div>
+        <div class="contentFilters__form--group">
+            <?= $form->field($model, 'surname')->textInput(['class' => 'form-control myForm']) ?>
+        </div>
+        <div class="contentFilters__form--group">
+            <?= $form->field($model, 'email')->textInput(['class' => 'form-control myForm']) ?>
+        </div>
+        <button class="myBtn myBtn--accent">Поиск</button>
 
-</div>
+<?php ActiveForm::end(); ?>
+

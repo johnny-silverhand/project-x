@@ -12,16 +12,16 @@ use yii\widgets\ListView;
 $this->title = 'Пользователи';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-index">
 
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+        <div class="contentFilters">
+            <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+        </div>
 
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
         'layout' => "\n{items}\n{pager}",
-        'itemOptions' => ['class' => 'card'],
-        'options' => ['class' => 'myGridProject'],
+        'itemOptions' => ['class' => 'card card__user'],
+        'options' => ['class' => 'content__content-3c'],
         'itemView' => 'itemView',
     ]) ?>
 
-</div>

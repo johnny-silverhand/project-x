@@ -73,10 +73,10 @@ AppAsset::register($this);
             'links' => $this->params['breadcrumbs'] ?? [],
         ])
         ?>
-        <div class="content__minContent mt10 ">
-            <div class="content__tableWrapper">
-                <div class="content__btnSizeTable"></div>
+        <div class="content__contentWrapper ">
+            <div class="content__minContent">
                     <?= $content ?>
+            </div>
             </div>
         </div>
     </div>

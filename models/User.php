@@ -17,6 +17,7 @@ use yii\db\ActiveRecord;
  * @property string|null $password_hash Хеш пароля
  * @property string|null $about О себе
  * @property int|null $institution_id институт
+ * @property string $image
  *
  * @property UserRole[] $userRoles
  * @property Institution $institution

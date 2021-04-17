@@ -10,46 +10,42 @@ use yii\widgets\ListView;
 /* @var int $index */
 /* @var ListView $widget */
 
+/**/
+
 ?>
 
-<div class="card">
-    <div class="card__head">
-        <div class="card__head-item">
-            <span>Организация</span>
-        </div>
-        <div class="card__head-item">
-                <span>Email</span>
-                <span><?= $model->email ?></span>
-        </div>
+<ul class="card__list-body">
+    <!--                            title не забудь!-->
+    <div class="card__avatar">
+        <?php
+        $stream = $model->image ? stream_get_contents($model->image) : false;
+        if ($stream) {
+            $image = 'data:image/jpeg;charset=utf-8;base64,' . base64_encode($stream);
+            echo Html::img($image, ['style' => '...']);
+        }else {
+            echo Html::img('media/no_avatar.png');
+        }
+        ?>
     </div>
-    <div class="card__body">
-        <div class="card__info">
-            <div class="card__wrapperAvatar">
-                <div class="card__avatar">
-
-                    <?php
-                    $stream = $model->image ? stream_get_contents($model->image) : false;
-                    if ($stream) {
-                        $image = 'data:image/jpeg;charset=utf-8;base64,' . base64_encode($stream);
-                        echo Html::img($image, ['style' => '...']);
-                    }else {
-                        echo Html::img('media/no_avatar.png');
-                    }
-                    ?>
-                </div>
-            </div>
-            <p class="card__label"><?= UserHelper::fioLink($model); ?></p>
-            <!--                            <p class="card__additional">email: <span>Bober2145@yandex.ru</span></p>-->
-
-        </div>
-
-        <div class="card__textWrapper">
-            <p>О себе:</p>
-            <div>
-                <p>
-                    <?= mb_strlen($model->about) > 0 ? $model->about : 'Не заполнено' ?>
-                </p>
-            </div>
-        </div>
+    <br/>
+    <div class="card__name"> <?= UserHelper::fioLink($model) ?></div>
+    <br/>
+    <div class="card__info">
+        <li>
+            <span><b>Email:&nbsp;</b></span>
+            <span><?= $model->email ?></span>
+        </li>
+        <li>
+            <span><b>Учреждение:&nbsp;</b></span>
+            <span><?= $model->institution->name ?></span>
+        </li>
+        <li class="card__about">
+            <span><b>О себе:&nbsp;</b></span>
+            <span><?= $model->about ?></span>
+        </li>
     </div>
+</ul>
+<br/>
+<div class="card__btnWrapper card__btnWrapper--end">
+    <?= Html::a('Просмотр', ['view', 'id' => $model->id], ['class' => 'myBtn myBtn--accent']) ?>
 </div>
