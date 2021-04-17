@@ -91,4 +91,14 @@ class Institution extends ActiveRecord
     {
         return $this->hasMany(User::class, ['institution_id' => 'id']);
     }
+
+    public static function getList(): array
+    {
+        $list = [];
+        $models = self::find()->orderBy('id')->all();
+        foreach ($models as $model) {
+            $list[$model->id] = $model->name;
+        }
+        return $list;
+    }
 }

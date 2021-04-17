@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Institution;
 use Yii;
 use app\models\Student;
 use app\models\Specialization;
@@ -119,6 +120,31 @@ class StudentController extends Controller
         return $this->render('_form', [
             'model' => $model,
             'specializations'  => Specialization::getList()
+        ]);
+    }
+
+    public function actionMove($id): string|Response
+    {
+        $model = $this->findModel($id);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+        return $this->render('move', [
+            'model' => $model,
+            'specializations'  => Specialization::getList(),
+            'institutions' => Institution::getList(),
+        ]);
+    }
+
+    public function actionDeduction($id): string|Response
+    {
+        $model = $this->findModel($id);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+        return $this->render('deduction', [
+            'model' => $model,
+            'statuses' => $this->repository->getStudentStatuses(),
         ]);
     }
 

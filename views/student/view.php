@@ -22,14 +22,9 @@ YiiAsset::register($this);
 
 
     <p>
+        <?= Html::a('Приказ о переводе', ['move', 'id' => $model->id], ['class' => 'myBtn myBtn--grey']) ?>
+        <?= Html::a('Приказ об отчислении', ['deduction', 'id' => $model->id], ['class' => 'myBtn myBtn--red']) ?>
         <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'myBtn myBtn--accent']) ?>
-        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
-            'class' => 'myBtn myBtn--red',
-            'data' => [
-                'confirm' => 'Вы действительно хотите удалить этого студента?',
-                'method' => 'post',
-            ],
-        ]) ?>
     </p>
 
         <br>
