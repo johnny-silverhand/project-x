@@ -60,6 +60,11 @@ AppAsset::register($this);
             <h1><b><?= $this->title ?></b></h1>
         </div>
         <br>
+        <?=
+        Breadcrumbs::widget([
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ])
+        ?>
         <div class="content__minContent mt10 ">
             <div class="content__tableWrapper">
                 <div class="content__btnSizeTable"></div>
