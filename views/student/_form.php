@@ -29,6 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
 
         <?= $form->field($model, 'budget')->checkbox() ?>
+        <?= $form->field($model, 'orphan')->checkbox() ?>
+        <?= $form->field($model, 'employed')->checkbox() ?>
 
         <?= $form->field($model, 'group_id')->dropDownList($groups) ?>
 

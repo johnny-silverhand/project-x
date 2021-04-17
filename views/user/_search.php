@@ -11,6 +11,7 @@ use yii\web\View;
 
 ?>
 
+
 <?php $form = ActiveForm::begin([
     'action' => ['index'],
     'method' => 'get',
@@ -27,21 +28,13 @@ use yii\web\View;
     ],
     'options' => [
         'data-pjax' => 1,
-        'class' => 'contentFilters__form',
     ],
 ]); ?>
 
 
-        <div class="contentFilters__form--group">
             <?= $form->field($model, 'name')->textInput(['class' => 'form-control myForm']) ?>
-        </div>
-        <div class="contentFilters__form--group">
             <?= $form->field($model, 'surname')->textInput(['class' => 'form-control myForm']) ?>
-        </div>
-        <div class="contentFilters__form--group">
             <?= $form->field($model, 'email')->textInput(['class' => 'form-control myForm']) ?>
-        </div>
         <button class="myBtn myBtn--accent">Поиск</button>
 
 <?php ActiveForm::end(); ?>
-

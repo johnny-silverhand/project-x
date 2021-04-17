@@ -13,7 +13,11 @@ $this->title = 'Пользователи';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-        <div class="contentFilters">
+
+
+
+
+        <div class="content__formWrapper">
             <?php echo $this->render('_search', ['model' => $searchModel]); ?>
         </div>
 

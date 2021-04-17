@@ -19,7 +19,7 @@ use dosamigos\datepicker\DatePicker;
 
 <div class="student-search">
 
-    <div class="content__formWrapper ">
+    <div class="content__formWrapper content__formWrapper--top">
         <?php $form = ActiveForm::begin([
             'action' => ['index'],
             'method' => 'get',
@@ -90,6 +90,9 @@ use dosamigos\datepicker\DatePicker;
                     <br>
                     <div>
                         <?= $form->field($model, 'employed')->checkbox() ?>
+                    </div>
+                    <div>
+                        <?= $form->field($model, 'mode')->dropDownList(StudentSearch::getModeList())->hiddenInput()->label('') ?>
                     </div>
                 </div>
             </div>

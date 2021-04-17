@@ -47,6 +47,9 @@ AppAsset::register($this);
                 <li class="header__list-item">
                     <?= Html::a('Отчет', ['student/index'], ['class' => 'header__list-link']) ?>
                 </li>
+                <li class="header__list-item">
+                    <?= Html::a('Отчет департамента', ['student/index', 'mode' => \app\models\StudentSearch::CNT_MODE], ['class' => 'header__list-link']) ?>
+                </li>
                 <?php if(!Yii::$app->getUser()->isGuest): ?>
                 <li class="header__list-item">
                     <div class="header__avatar">

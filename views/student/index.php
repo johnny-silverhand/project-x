@@ -51,40 +51,72 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'institution_id',
-                'value' => function (Student $model) use ($institutions) {
-                    return $institutions[$model->group->institution_id] ?? "";
+                'value' => function (Student $model) use ($searchModel, $institutions) {
+                    return $searchModel->mode == StudentSearch::CNT_MODE
+                        ? ($institutions[$model->institution_id] ?? "")
+                        : ($institutions[$model->group->institution_id] ?? "");
                 },
             ],
             [
                 'attribute' => 'group_id',
-                'value' => function(Student $student) {
-                    return $student->group->code;
+                'value' => function(Student $student) use ($searchModel) {
+                    return $searchModel->mode == StudentSearch::CNT_MODE ? $student->group_id : $student->group?->code;
                 },
             ],
             [
                 'attribute' => 'specialization_id',
-                'value' => function (Student $model) use ($specializations) {
-                    return $specializations[$model->group->specialization_id] ?? "";
+                'value' => function (Student $model) use ($searchModel, $specializations) {
+                    return $searchModel->mode == StudentSearch::CNT_MODE
+                        ? $model->specialization_id
+                        : $specializations[$model->group?->specialization_id] ?? "";
                 }
             ],
             [
                 'attribute' => 'status',
-                'value' => function (Student $model) use ($statuses) {
-                    return $statuses[$model->status] ?? "";
+                'value' => function (Student $model) use ($searchModel, $statuses) {
+                    return $searchModel->mode == StudentSearch::CNT_MODE
+                        ? $model->status
+                        : $statuses[$model->status] ?? "";
                 },
             ],
-            'budget:boolean',
+            [
+                'attribute' => 'budget',
+                'visible' => $searchModel->mode != StudentSearch::CNT_MODE,
+                'format' => 'boolean',
+            ],
+            [
+                'attribute' => 'cntBudget',
+                'visible' => $searchModel->mode == StudentSearch::CNT_MODE,
+            ],
             'date_start',
             'date_end',
             'birthdate',
-            'orphan:boolean',
+            [
+                'attribute' => 'orphan',
+                'visible' => $searchModel->mode != StudentSearch::CNT_MODE,
+                'format' => 'boolean',
+            ],
+            [
+                'attribute' => 'cntOrphan',
+                'visible' => $searchModel->mode == StudentSearch::CNT_MODE,
+            ],
             [
                 'attribute' => 'invalid',
-                'value' => function (Student $model) use ($invalidTypes) {
-                    return $invalidTypes[$model->invalid] ?? "";
+                'value' => function (Student $model) use ($searchModel, $invalidTypes) {
+                    return $searchModel->mode == StudentSearch::CNT_MODE
+                        ? $model->invalid
+                        : $invalidTypes[$model->invalid] ?? "";
                 },
             ],
-            'employed:boolean',
+            [
+                'attribute' => 'employed',
+                'visible' => $searchModel->mode != StudentSearch::CNT_MODE,
+                'format' => 'boolean',
+            ],
+            [
+                'attribute' => 'cntEmployed',
+                'visible' => $searchModel->mode == StudentSearch::CNT_MODE,
+            ],
         ],
     ]); ?>
 
