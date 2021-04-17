@@ -4,7 +4,11 @@ use app\models\StudentSearch;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\ActiveForm;
+use dosamigos\datepicker\DatePicker;
 
+/* @var $statuses array */
+/* @var $specializations array */
+/* @var $institutions array */
 /* @var $this View */
 /* @var $model StudentSearch */
 /* @var $form ActiveForm */
@@ -22,29 +26,33 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
-
     <?= $form->field($model, 'fio') ?>
 
-    <?= $form->field($model, 'birthdate') ?>
+    <?= $form->field($model, 'birthdate')->widget(DatePicker::class, [
+        'language' => 'ru',
+    ]) ?>
 
     <?= $form->field($model, 'budget')->checkbox() ?>
 
-    <?= $form->field($model, 'date_start') ?>
+    <?= $form->field($model, 'date_start')->widget(DatePicker::class, [
+        'language' => 'ru',
+    ]) ?>
 
-    <?php // echo $form->field($model, 'date_end') ?>
+    <?= $form->field($model, 'date_end')->widget(DatePicker::class, [
+        'language' => 'ru',
+    ]) ?>
 
-    <?php // echo $form->field($model, 'status') ?>
+    <?= $form->field($model, 'status')->dropDownList($statuses) ?>
 
-    <?php // echo $form->field($model, 'orphan')->checkbox() ?>
+    <?= $form->field($model, 'orphan')->checkbox() ?>
 
     <?php echo $form->field($model, 'invalid')->dropDownList($invalidTypes) ?>
 
-    <?php // echo $form->field($model, 'employed')->checkbox() ?>
+    <?= $form->field($model, 'employed')->checkbox() ?>
 
-    <?php // echo $form->field($model, 'institution_id') ?>
+    <?= $form->field($model, 'institution_id')->dropDownList($institutions) ?>
 
-    <?php // echo $form->field($model, 'specialization_id') ?>
+    <?= $form->field($model, 'specialization_id')->dropDownList($specializations) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Поиск', ['class' => 'myBtn myBtn--accent']) ?>

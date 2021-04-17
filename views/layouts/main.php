@@ -39,10 +39,10 @@ AppAsset::register($this);
                     <?= Html::a('Главная', ['site/index'], ['class' => 'header__list-link']) ?>
                 </li>
                 <li class="header__list-item">
-                    <?= Html::a('Запросы', ['request/index'], ['class' => 'header__list-link']) ?>
+                    <?= Html::a('Учреждения', ['institution/index'], ['class' => 'header__list-link']) ?>
                 </li>
                 <li class="header__list-item">
-                    <?= Html::a('Учреждения', ['institution/index'], ['class' => 'header__list-link']) ?>
+                    <?= Html::a('Отчет', ['student/index'], ['class' => 'header__list-link']) ?>
                 </li>
                 <?php if(!Yii::$app->getUser()->isGuest): ?>
                 <li class="header__list-item">

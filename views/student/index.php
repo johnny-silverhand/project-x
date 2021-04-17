@@ -3,7 +3,6 @@
 use app\models\Student;
 use app\models\StudentSearch;
 use yii\data\ActiveDataProvider;
-use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\web\View;
 use yii\widgets\Pjax;
@@ -21,20 +20,21 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="student-index">
 
-    <p>
-        <?= Html::a('Добавить студента', ['create'], ['class' => 'myBtn myBtn--accent']) ?>
-    </p>
     <br>
 
     <?php Pjax::begin(); ?>
-    <?php echo $this->render('_search', ['model' => $searchModel, 'invalidTypes' => $invalidTypes]); ?>
+    <?php echo $this->render('_search', [
+        'model' => $searchModel,
+        'specializations'  => $specializations,
+        'statuses' => $statuses,
+        'institutions' => $institutions,
+        'invalidTypes' => $invalidTypes,
+    ]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        'filterModel' => null,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'id',
             'fio',
             'birthdate',
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $statuses[$model->status] ?? "";
                 },
             ],
-            /*'orphan:boolean',*/
+            'orphan:boolean',
             [
                 'attribute' => 'invalid',
                 'value' => function (Student $model) use ($invalidTypes) {
@@ -67,8 +67,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $specializations[$model->specialization_id] ?? "";
                 }
             ],
-
-            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 
