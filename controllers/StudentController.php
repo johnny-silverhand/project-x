@@ -68,6 +68,8 @@ class StudentController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'specializations'  => Specialization::getList(),
+            'statuses' => $this->repository->getStudentStatuses(),
         ]);
     }
 
