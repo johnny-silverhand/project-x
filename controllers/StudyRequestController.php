@@ -82,6 +82,9 @@ class StudyRequestController extends Controller
     public function actionCreate()
     {
         $model = new StudyRequest();
+        $user = Yii::$app->user->getIdentity()->getUser();
+
+        $model->fio = $user->surname.' '.mb_substr($user->name, 0, 1).'.';
         $model->invited = false;
         $model->with_docs = false;
 
