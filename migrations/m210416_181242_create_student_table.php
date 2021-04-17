@@ -20,6 +20,9 @@ class m210416_181242_create_student_table extends Migration
             'date_start' => $this->date()->comment('Дата начала обучения'),
             'date_end' => $this->date()->comment('Дата конца обучения'),
             'status' => $this->integer('Статус обучения'),
+            'orphan' => $this->boolean()->comment('признак сироты'),
+            'invalid' => $this->integer('инвалидность'),
+            'employed' => $this->boolean()->comment('трудоустроен после окончания'),
             'institution_id' => $this->integer()->comment('ИД Организации'),
             'specialization_id' => $this->integer()->comment('ИД Специализации'),
         ]);

@@ -17,7 +17,10 @@ use yii\db\ActiveRecord;
  * @property bool|null $budget Бюджет
  * @property string|null $date_start Дата начала обучения
  * @property string|null $date_end Дата конца обучения
- * @property int|null $status
+ * @property int|null $status Статус обучения
+ * @property bool|null $orphan признак сироты
+ * @property int|null $invalid инвалидность
+ * @property bool|null $employed трудоустроен после окончания
  * @property int|null $institution_id ИД Организации
  * @property int|null $specialization_id ИД Специализации
  *
@@ -41,9 +44,9 @@ class Student extends ActiveRecord
     {
         return [
             [['birthdate', 'date_start', 'date_end'], 'safe'],
-            [['budget'], 'boolean'],
+            [['budget', 'orphan', 'employed'], 'boolean'],
             [['status', 'institution_id', 'specialization_id'], 'default', 'value' => null],
-            [['status', 'institution_id', 'specialization_id'], 'integer'],
+            [['status', 'institution_id', 'specialization_id', 'invalid'], 'integer'],
             [['fio'], 'string', 'max' => 100],
             [['institution_id'], 'exist', 'skipOnError' => true, 'targetClass' => Institution::class, 'targetAttribute' => ['institution_id' => 'id']],
             [['specialization_id'], 'exist', 'skipOnError' => true, 'targetClass' => Specialization::class, 'targetAttribute' => ['specialization_id' => 'id']],
@@ -65,6 +68,9 @@ class Student extends ActiveRecord
             'status' => 'Status',
             'institution_id' => 'ИД Организации',
             'specialization_id' => 'ИД Специализации',
+            'orphan' => 'признак сироты',
+            'invalid' => 'инвалидность',
+            'employed' => 'трудоустроен после окончания',
         ];
     }
 
