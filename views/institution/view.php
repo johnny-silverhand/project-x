@@ -36,11 +36,6 @@ YiiAsset::register($this);
         'attributes' => [
             'name',
             'is_admin:boolean',
-            [
-                'label' => 'Абитуриенты',
-                'value' => Html::a(3, ['study-request/index', 'institution_id' => $model->id]),
-                'format' => 'raw',
-            ],
         ],
     ]) ?>
 

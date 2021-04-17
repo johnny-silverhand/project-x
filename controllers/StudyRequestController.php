@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\StudyRequest;
+use app\models\Student;
 use app\models\Institution;
 use app\models\Specialization;
 use app\repositories\Repository;
@@ -116,6 +117,21 @@ class StudyRequestController extends Controller
             'specializations' => Specialization::getList(),
             'invalidTypes' => $this->repository->getInvalidTypes(),
         ]);
+    }
+
+    public function actionInvite($id) {
+        $model = $this->findModel($id);
+        $model->invited = true;
+        if($model->save()) {
+            $student = new Student();
+            $student->fio = $model->fio;
+            $student->birthdate = $model->birthdate;
+            $student->date_start = date('01.09.Y');
+            $student->date_end = date('01.07.2023');
+            $student->group_id = 1;
+            $student->save();
+            $this->redirect(['institution/view', 'id' => $model->institution_id]);
+        }
     }
 
     /**

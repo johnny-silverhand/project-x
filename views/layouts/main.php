@@ -42,9 +42,6 @@ AppAsset::register($this);
                     <?= Html::a('Учреждения', ['institution/index'], ['class' => 'header__list-link']) ?>
                 </li>
                 <li class="header__list-item">
-                    <?= Html::a('Приемная комиссия', ['study-request/index'], ['class' => 'header__list-link']) ?>
-                </li>
-                <li class="header__list-item">
                     <?= Html::a('Отчет', ['student/index'], ['class' => 'header__list-link']) ?>
                 </li>
                 <li class="header__list-item">

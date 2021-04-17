@@ -33,7 +33,12 @@ use dosamigos\datepicker\DatePicker;
 
     <?= $form->field($model, 'score')->textInput() ?>
 
-    <?= $form->field($model, 'rate')->dropDownList([1, 2, 3, 4]) ?>
+    <?= $form->field($model, 'rate')->dropDownList([
+        1 => 1,
+        2 => 2,
+        3 => 3,
+        4 => 4
+    ]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Отправить', ['class' => 'btn btn-success']) ?>
