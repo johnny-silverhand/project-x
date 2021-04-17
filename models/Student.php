@@ -69,7 +69,7 @@ class Student extends ActiveRecord
             'institution_id' => 'Учреждение',
             'specialization_id' => 'Направление',
             'orphan' => 'Признак сироты',
-            'invalid' => 'Ннвалидность',
+            'invalid' => 'Инвалидность',
             'employed' => 'Трудоустроен после обучения',            
         ];
     }

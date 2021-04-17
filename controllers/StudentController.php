@@ -70,6 +70,7 @@ class StudentController extends Controller
             'dataProvider' => $dataProvider,
             'specializations'  => Specialization::getList(),
             'statuses' => $this->repository->getStudentStatuses(),
+            'institutions' => Institution::getList(),
         ]);
     }
 
