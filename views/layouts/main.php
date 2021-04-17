@@ -3,6 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\controllers\SiteController;
 use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
@@ -42,14 +43,19 @@ AppAsset::register($this);
                     <?= Html::a('Учреждения', ['institution/index'], ['class' => 'header__list-link']) ?>
                 </li>
                 <?php if(!Yii::$app->getUser()->isGuest): ?>
-                <li class="header__list-item">
+                <li class="header__list-item header__list-item--exit">
                     <div class="header__avatar">
                         <a href="<?= Url::to(['user/view', 'id' => Yii::$app->getUser()->getId()]) ?>">
-                            <img width="45px"
-                                 height="45px"
-                                 title='Профиль пользователя'
-                                 src="media/no_avatar.png"
-                                 alt="" class="img-circle"></a>
+                            <?php
+                            $stream = Yii::$app->user->identity->getUser()->image ? stream_get_contents(Yii::$app->user->identity->getUser()->image) : false;
+                            if ($stream) {
+                                $image = 'data:image/jpeg;charset=utf-8;base64,' . base64_encode($stream);
+                                echo Html::img($image, ["width"=>"45px", "height" => "45px", 'class' => 'img-circle']);
+                            }else {
+                                echo Html::img('media/no_avatar.png', ["width"=>"45px", "height" => "45px", 'class' => 'img-circle']);
+                            }
+                            ?>
+                           </a>
                     </div>
                     <?= Html::a('Выход', ['site/logout'], ['class' => 'black header__list-link']) ?>
                 </li>
@@ -58,6 +64,15 @@ AppAsset::register($this);
         </div>
     </div>
 </header>
+
+<?php if (Yii::$app?->controller instanceof SiteController && Yii::$app?->controller?->action?->id === 'index'): ?>
+    <br>
+    <div class="wrapper">
+    <main>
+<?= $content ?>
+
+    </main>
+<?php else: ?>
 
 <main class="content">
     <div class="wrapper">
@@ -78,7 +93,8 @@ AppAsset::register($this);
         </div>
     </div>
 </main>
-
+<?php endif; ?>
+<script src="js/js.fcffc47e.js"></script>
 <?php $this->endBody() ?>
 </body>
 </html>

@@ -18,7 +18,7 @@ use yii\db\ActiveRecord;
  * @property string|null $date_start Дата начала обучения
  * @property string|null $date_end Дата конца обучения
  * @property int|null $status Статус обучения
- * @property bool|null $orphan признак сироты
+ * @property bool|null $orphan Является сиротой
  * @property int|null $invalid инвалидность
  * @property bool|null $employed трудоустроен после окончания
  * @property int|null $group_id ИД Группы
@@ -34,6 +34,8 @@ class Student extends ActiveRecord
     public $cntBudget = 0;
     public $cntOrphan = 0;
     public $cntEmployed = 0;
+
+    public $cnt = 0;
     /**
      * {@inheritdoc}
      */

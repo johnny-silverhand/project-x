@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\repositories\Repository;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
@@ -101,4 +102,37 @@ class Institution extends ActiveRecord
         }
         return $list;
     }
+
+    public function getCountInvalid(): int
+    {
+        $query = Student::find()->andWhere(['invalid' => [Repository::INVALID_1, Repository::INVALID_2, Repository::INVALID_3]]);
+        $query->joinWith('group g');
+        $query->andWhere(['g.institution_id' => $this->id]);
+        return $query->count();
+    }
+
+    public function getCountOrphan(): int
+    {
+        $query = Student::find()->andWhere(['orphan' => true]);
+        $query->joinWith('group g');
+        $query->andWhere(['g.institution_id' => $this->id]);
+        return $query->count();
+    }
+
+    public function getCountBudget(): int
+    {
+        $query = Student::find()->andWhere(['budget' => true]);
+        $query->joinWith('group g');
+        $query->andWhere(['g.institution_id' => $this->id]);
+        return $query->count();
+    }
+
+    public function getCountNotBudget(): int
+    {
+        $query = Student::find()->andWhere(['budget' => false]);
+        $query->joinWith('group g');
+        $query->andWhere(['g.institution_id' => $this->id]);
+        return $query->count();
+    }
+
 }

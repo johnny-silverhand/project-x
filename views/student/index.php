@@ -48,6 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Html::a($student->fio, ['student/view', 'id' => $student->id], ['data-pjax' => 0]);
                 },
                 'format' => 'raw',
+                'visible' => $searchModel->mode != StudentSearch::CNT_MODE,
             ],
             [
                 'attribute' => 'institution_id',
@@ -62,6 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function(Student $student) use ($searchModel) {
                     return $searchModel->mode == StudentSearch::CNT_MODE ? $student->group_id : $student->group?->code;
                 },
+                'visible' => $searchModel->mode != StudentSearch::CNT_MODE,
             ],
             [
                 'attribute' => 'specialization_id',
@@ -69,7 +71,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $searchModel->mode == StudentSearch::CNT_MODE
                         ? $model->specialization_id
                         : $specializations[$model->group?->specialization_id] ?? "";
-                }
+                },
+                'visible' => $searchModel->mode != StudentSearch::CNT_MODE,
             ],
             [
                 'attribute' => 'status',
@@ -78,27 +81,29 @@ $this->params['breadcrumbs'][] = $this->title;
                         ? $model->status
                         : $statuses[$model->status] ?? "";
                 },
+                'visible' => $searchModel->mode != StudentSearch::CNT_MODE,
             ],
             [
                 'attribute' => 'budget',
-                'visible' => $searchModel->mode != StudentSearch::CNT_MODE,
                 'format' => 'boolean',
+                'visible' => $searchModel->mode != StudentSearch::CNT_MODE,
             ],
             [
-                'attribute' => 'cntBudget',
-                'visible' => $searchModel->mode == StudentSearch::CNT_MODE,
+                'attribute' => 'date_start',
+                'visible' => $searchModel->mode != StudentSearch::CNT_MODE,
             ],
-            'date_start',
-            'date_end',
-            'birthdate',
+            [
+                'attribute' => 'date_end',
+                'visible' => $searchModel->mode != StudentSearch::CNT_MODE,
+            ],
+            [
+                'attribute' => 'birthdate',
+                'visible' => $searchModel->mode != StudentSearch::CNT_MODE,
+            ],
             [
                 'attribute' => 'orphan',
-                'visible' => $searchModel->mode != StudentSearch::CNT_MODE,
                 'format' => 'boolean',
-            ],
-            [
-                'attribute' => 'cntOrphan',
-                'visible' => $searchModel->mode == StudentSearch::CNT_MODE,
+                'visible' => $searchModel->mode != StudentSearch::CNT_MODE,
             ],
             [
                 'attribute' => 'invalid',
@@ -107,14 +112,16 @@ $this->params['breadcrumbs'][] = $this->title;
                         ? $model->invalid
                         : $invalidTypes[$model->invalid] ?? "";
                 },
+                'visible' => $searchModel->mode != StudentSearch::CNT_MODE,
             ],
             [
                 'attribute' => 'employed',
-                'visible' => $searchModel->mode != StudentSearch::CNT_MODE,
                 'format' => 'boolean',
+                'visible' => $searchModel->mode != StudentSearch::CNT_MODE,
             ],
             [
-                'attribute' => 'cntEmployed',
+                'attribute' => 'cnt',
+                'label' => 'Количество',
                 'visible' => $searchModel->mode == StudentSearch::CNT_MODE,
             ],
         ],
