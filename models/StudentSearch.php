@@ -11,6 +11,8 @@ use app\models\Student;
  */
 class StudentSearch extends Student
 {
+    public $birthdateStart;
+    public $birthdateEnd;
     /**
      * {@inheritdoc}
      */
@@ -20,6 +22,7 @@ class StudentSearch extends Student
             [['id', 'status', 'institution_id', 'specialization_id'], 'integer'],
             [['fio', 'birthdate', 'date_start', 'date_end'], 'safe'],
             [['budget'], 'boolean'],
+            [['birthdateStart', 'birthdateEnd'], 'date', 'format' => 'd.m.Y'],
         ];
     }
 
@@ -68,6 +71,14 @@ class StudentSearch extends Student
             'institution_id' => $this->institution_id,
             'specialization_id' => $this->specialization_id,
         ]);
+
+        if ($this->birthdateStart && $this->birthdateEnd) {
+            $query->andFilterWhere(['between', 'birthdate', $this->birthdateStart, $this->birthdateEnd]);
+        } elseif ($this->birthdateStart) {
+            $query->andFilterWhere(['birthdate' => $this->birthdateStart]);
+        } elseif ($this->birthdateEnd) {
+            $query->andFilterWhere(['birthdate' => $this->birthdateEnd]);
+        }
 
         $query->andFilterWhere(['ilike', 'fio', $this->fio]);
 

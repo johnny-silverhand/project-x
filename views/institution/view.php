@@ -38,7 +38,7 @@ YiiAsset::register($this);
         ],
     ]) ?>
 
-    <h1>Учащиеся:</h1>
+    <h1>Контингент:</h1>
 
     <?= $studentGrid ?>
 
