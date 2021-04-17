@@ -3,7 +3,8 @@
 use app\models\Student;
 use app\models\StudentSearch;
 use yii\data\ActiveDataProvider;
-use yii\grid\GridView;
+//use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\web\View;
 use yii\widgets\Pjax;
 

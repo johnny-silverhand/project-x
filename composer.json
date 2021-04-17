@@ -25,7 +25,8 @@
     "2amigos/yii2-ckeditor-widget": "~2.0.0",
     "borales/yii2-phone-input": "~0.3.0",
     "restlin/morphology": "^1.0",
-    "2amigos/yii2-date-picker-widget": "^1.0"
+    "2amigos/yii2-date-picker-widget": "^1.0",
+    "kartik-v/yii2-grid": "^3.3"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.1.0",
