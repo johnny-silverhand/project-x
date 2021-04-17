@@ -10,12 +10,12 @@ $this->title = 'Главная';
     <?= Html::a('Учреждения', ['institution/index'], ['class' => 'myBtn myBtn--accent']) ?>
     <br>
     <br>
-    <?= Html::a('запросы', ['request/index'], ['class' => 'myBtn myBtn--accent']) ?>
+    <?= Html::a('Заявление на поступление', ['study-request/create'], ['class' => 'myBtn myBtn--accent']) ?>
     <br>
     <br>
     <?= Html::a('ответы', ['response/index'], ['class' => 'myBtn myBtn--accent']) ?>
     <br>
     <br>
-    <?= Html::a('Специализации', ['specialization/index'], ['class' => 'myBtn myBtn--accent']) ?>    
+    <?= Html::a('Специализации', ['specialization/index'], ['class' => 'myBtn myBtn--accent']) ?>
 
 </div>

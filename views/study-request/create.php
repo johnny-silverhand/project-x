@@ -8,8 +8,8 @@ use yii\helpers\Html;
 /* @var $specializations array */
 /* @var $invalidTypes array*/
 
-$this->title = 'Create Study Request';
-$this->params['breadcrumbs'][] = ['label' => 'Study Requests', 'url' => ['index']];
+$this->title = 'Подать заявление';
+$this->params['breadcrumbs'][] = ['label' => 'Заявления', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="study-request-create">

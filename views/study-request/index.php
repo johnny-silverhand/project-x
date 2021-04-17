@@ -1,7 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+//use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\StudyRequestSearch */
@@ -13,10 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="study-request-index">
 
 
-    <p>
-        <?= Html::a('Подать заявление', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?php Pjax::begin(); ?>
 
     <?= GridView::widget([
@@ -26,7 +23,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'fio',
             'birthdate',
-            'institution_id',
             'specialization_id',
             'budget:boolean',
             'orphan:boolean',
@@ -34,8 +30,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'score',
             'rate',
             'with_docs:boolean',
-            'invited:boolean',
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

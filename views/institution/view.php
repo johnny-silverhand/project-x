@@ -9,6 +9,7 @@ use yii\widgets\DetailView;
 /* @var $this View */
 /* @var $model Institution */
 /* @var $studentGrid string */
+/* @var $requestGrid string */
 /* @var $dataGrid string */
 
 $this->title = $model->name;
@@ -35,12 +36,21 @@ YiiAsset::register($this);
         'attributes' => [
             'name',
             'is_admin:boolean',
+            [
+                'label' => 'Абитуриенты',
+                'value' => Html::a(3, ['study-request/index', 'institution_id' => $model->id]),
+                'format' => 'raw',
+            ],
         ],
     ]) ?>
 
     <h1>Контингент:</h1>
 
     <?= $studentGrid ?>
+
+    <h1>Приемная комиссия:</h1>
+
+    <?= $requestGrid ?>
 
     <!--<h2>Другие сведения</h2>
 

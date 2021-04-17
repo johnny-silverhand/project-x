@@ -57,17 +57,17 @@ class StudyRequest extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ИД',
-            'fio' => 'ФИО абитуриента',
+            'id' => 'КОД ЛЧ',
+            'fio' => 'ФИО',
             'birthdate' => 'Дата рождения',
-            'institution_id' => 'Ид учреждения',
-            'specialization_id' => 'Ид направления',
+            'institution_id' => 'Учреждение',
+            'specialization_id' => 'Направление',
             'budget' => 'Бюджет',
             'orphan' => 'Признак сироты',
             'invalid' => 'Инвалидность',
             'score' => 'Средний балл',
             'rate' => 'Приоритет',
-            'with_docs' => 'Предоставлены оригиналы документов',
+            'with_docs' => 'Наличие оригиналов',
             'invited' => 'Зачислен',
         ];
     }

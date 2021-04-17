@@ -80,6 +80,8 @@ class StudyRequestController extends Controller
     public function actionCreate()
     {
         $model = new StudyRequest();
+        $model->invited = false;
+        $model->with_docs = false;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

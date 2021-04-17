@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\InstitutionDataSearch;
+use app\models\StudyRequestSearch;
 use app\models\StudentSearch;
 use app\models\Group;
 use app\models\Specialization;
@@ -85,6 +86,7 @@ class InstitutionController extends Controller
         return $this->render('view', [
             'model' => $model,
             'studentGrid' => $this->renderStudents($model),
+            'requestGrid' => $this->renderRequests($model),
             'dataGrid' => $this->renderData($model)
         ]);
     }
@@ -93,6 +95,18 @@ class InstitutionController extends Controller
         $searchModel = new StudentSearch(['institution_id' => $model->id]);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->renderPartial('/student/institution_index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'groups' => Group::getList($model->id),
+            'specializations' => Specialization::getList(),
+            'statuses' => $this->repository->getStudentStatuses(),
+        ]);
+    }
+    private function renderRequests(Institution $model): string
+    {
+        $searchModel = new StudyRequestSearch(['institution_id' => $model->id, 'invited' => false]);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        return $this->renderPartial('/study-request/index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'groups' => Group::getList($model->id),

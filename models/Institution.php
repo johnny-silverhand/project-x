@@ -47,7 +47,7 @@ class Institution extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'наименование',
+            'name' => 'Наименование',
             'is_admin' => 'Министерство',
         ];
     }
