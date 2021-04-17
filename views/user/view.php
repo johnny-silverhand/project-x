@@ -22,7 +22,7 @@ foreach($model->userRoles as $userRole) {
         [
             'data-confirm' => 'Вы уверены, что хотите удалить эту роль?',
             'data-method' => 'POST',
-        ])));    
+        ])));
 }
 ?>
 

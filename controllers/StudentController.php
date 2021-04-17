@@ -90,6 +90,28 @@ class StudentController extends Controller
             'statuses' => $this->repository->getStudentStatuses(),
         ]);
     }
+    private function getFileContent($file): string {
+        $officeMimes = [
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'application/msword',
+            'application/vnd.oasis.opendocument.text',
+        ];
+        $content = '';
+            if(in_array($file->type, ['image/jpeg', 'image/png'])) {
+                exec("tesseract -l rus+eng {$file->tempName} stdout > /tmp/tesseract.txt");
+                $content = file_get_contents('/tmp/tesseract.txt');
+            } elseif(in_array($file->type, $officeMimes)) {
+                $file->saveAs('/tmp/office.html');
+                exec("soffice --headless --convert-to html:HTML '/tmp/office.html'");
+                $content = file_get_contents('/tmp/office.html');
+            } elseif($file->type == 'application/pdf') {
+                exec("pdftohtml -dataurls -fmt png -noframes -stdout {$file->tempName} > /tmp/pdf.html");
+                $content = file_get_contents('/tmp/pdf.html');
+            } elseif($file->type == 'text/plain') {
+                $content = file_get_contents($file->tempName);
+            }
+        return $content;
+    }
 
     /**
      * @return string|Response
@@ -100,23 +122,7 @@ class StudentController extends Controller
         $model->status = Repository::STUDENT_WORK;
         $file = UploadedFile::getInstanceByName('file');
         if($file) {
-            $officeMimes = [
-                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                'application/msword',
-                'application/vnd.oasis.opendocument.text',
-            ];
-            if(in_array($file->type, ['image/jpeg', 'image/png'])) {
-                exec("tesseract -l rus+eng {$file->tempName} stdout > /tmp/tesseract.txt");
-                $content = file_get_contents('/tmp/tesseract.txt');
-            } elseif(in_array($file->type, $officeMimes)) {
-                exec("soffice --headless --convert-to html:HTML {$file->tempName}");
-                $content = file_get_contents('/tmp/pdf.html');
-            } elseif($file->type == 'application/pdf') {
-                exec("pdftohtml -dataurls -fmt png -noframes -stdout {$file->tempName} > /tmp/pdf.html");
-                $content = file_get_contents('/tmp/pdf.html');
-            } elseif($file->type == 'text/plain') {
-                $content = file_get_contents($file->tempName);
-            }
+            $content = $this->getFileContent($file);
             $extractor = new \app\services\Extractor($content);
             $result = $extractor->searchData();
             $model->attributes = $result->attributes;
