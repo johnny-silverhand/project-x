@@ -8,7 +8,8 @@ use yii\widgets\DetailView;
 
 /* @var $this View */
 /* @var $model Institution */
-/* @var $data string */
+/* @var $studentGrid string */
+/* @var $dataGrid string */
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Организации', 'url' => ['index']];
@@ -36,9 +37,13 @@ YiiAsset::register($this);
             'is_admin:boolean',
         ],
     ]) ?>
+    
+    <h1>Учащиеся:</h1>
 
-    <h1>Сведения</h1>
+    <?= $studentGrid ?>
 
-    <?= $data ?>
+    <h2>Другие сведения</h2>
+
+    <?= $dataGrid ?>
 
 </div>

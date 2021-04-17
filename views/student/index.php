@@ -1,6 +1,7 @@
 <?php
 
 use app\models\StudentSearch;
+use app\models\Student;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use yii\grid\GridView;
@@ -9,33 +10,48 @@ use yii\web\View;
 /* @var $this View */
 /* @var $searchModel StudentSearch */
 /* @var $dataProvider ActiveDataProvider */
+/* @var $specializations array */
+/* @var $statuses array */
 
-$this->title = 'Студенты';
-$this->params['breadcrumbs'][] = $this->title;
+//$this->title = 'Студенты';
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="student-index">
 
     <p>
-        <?= Html::a('Добавить студента', ['create'], ['class' => 'myBtn myBtn--accent']) ?>
+        <?= Html::a('Приказ_о_зачислении', ['student/create', 'institutionId' => $searchModel->institution_id], ['class' => 'myBtn myBtn--accent']) ?>
     </p>
     <br>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'fio',
-            'birthdate',
+        'columns' => [            
+            [
+                'attribute' => 'fio',
+                'value' => function(Student $student) {
+                    return Html::a($student->fio, ['student/view', 'id' => $student->id], ['data-pjax' => 0]);
+                },
+                'format' => 'raw',
+            ],
+            [
+                'attribute' => 'specialization_id',
+                'value' => function(Student $student) {
+                    return $student->specialization->code.' - '.$student->specialization->name;
+                },
+                'filter' => $specializations,
+            ],
+            [
+                'attribute' => 'status',
+                'value' => function(Student $student) use ($statuses) {
+                    return key_exists($student->status, $statuses) ? $statuses[$student->status] : null;
+                },
+                'filter' => $statuses,
+            ],
             'budget:boolean',
+            'birthdate',
             'date_start',
-            //'date_end',
-            //'status',
-            //'institution_id',
-            //'specialization_id',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            'date_end',
         ],
     ]); ?>
 

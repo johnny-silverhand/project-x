@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Student;
+use app\models\Specialization;
+use app\repositories\Repository;
 use app\models\StudentSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -64,23 +66,26 @@ class StudentController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($id),            
         ]);
     }
 
     /**
      * @return string|Response
      */
-    public function actionCreate(): Response|string
+    public function actionCreate(int $institutionId): Response|string
     {
-        $model = new Student();
+        $model = new Student(); 
+        $model->institution_id = $institutionId;
+        $model->status = Repository::STUDENT_WORK;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['institution/view', 'id' => $model->institution_id]);
         }
 
         return $this->render('_form', [
             'model' => $model,
+            'specializations'  => Specialization::getList()
         ]);
     }
 

@@ -59,18 +59,18 @@ class Student extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'fio' => 'ФИО Студента',
+            'id' => 'Код',
+            'fio' => 'ФИО',
             'birthdate' => 'Дата рождения',
             'budget' => 'Бюджет',
             'date_start' => 'Дата начала обучения',
             'date_end' => 'Дата конца обучения',
-            'status' => 'Status',
-            'institution_id' => 'ИД Организации',
-            'specialization_id' => 'ИД Специализации',
-            'orphan' => 'признак сироты',
-            'invalid' => 'инвалидность',
-            'employed' => 'трудоустроен после окончания',
+            'status' => 'Статус',
+            'institution_id' => 'Учреждение',
+            'specialization_id' => 'Направление',
+            'orphan' => 'Признак сироты',
+            'invalid' => 'Ннвалидность',
+            'employed' => 'Трудоустроен после обучения',            
         ];
     }
 

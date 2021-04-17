@@ -58,4 +58,13 @@ class Specialization extends ActiveRecord
     {
         return $this->hasMany(Student::class, ['specialization_id' => 'id']);
     }
+    
+    public static function getList(): array {
+        $list = [];
+        $models = self::find()->orderBy('code')->all();
+        foreach($models as $model) {
+            $list[$model->id] = $model->code.' - '.$model->name;
+        }
+        return $list;
+    }
 }

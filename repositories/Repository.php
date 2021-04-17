@@ -14,6 +14,11 @@ final class Repository
     const WORK = 1;
     const DONE = 2;
     const CANCEL = 3;
+    
+    
+    const STUDENT_WORK = 1;
+    const STUDENT_DONE = 2;
+    const STUDENT_DISMISS = 3;
 
     /**
      * @return string[]
@@ -37,6 +42,18 @@ final class Repository
             self::WORK => 'в работе',
             self::DONE => 'завершен',
             self::CANCEL => 'отменен',
+        ];
+    }
+    
+    /**
+     * @return string[]
+     */
+    public function getStudentStatuses(): array
+    {
+        return [
+            self::STUDENT_WORK => 'учится',
+            self::STUDENT_DONE => 'окончил обучение',
+            self::STUDENT_DISMISS => 'отчислен',
         ];
     }
 
