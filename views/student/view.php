@@ -8,9 +8,11 @@ use yii\widgets\DetailView;
 
 /* @var $this View */
 /* @var $model Student */
+/* @var $statuses */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Студенты', 'url' => ['index']];
+$this->title = $model->fio;
+$this->params['breadcrumbs'][] = ['label' => 'Учреждения', 'url' => ['institution/index']];
+$this->params['breadcrumbs'][] = ['label' => $model->institution->name, 'url' => ['institution/view', 'id' => $model->institution->id]];
 $this->params['breadcrumbs'][] = $this->title;
 YiiAsset::register($this);
 ?>
@@ -34,15 +36,23 @@ YiiAsset::register($this);
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'fio',
-            'birthdate',
-            'budget:boolean',
-            'date_start',
-            'date_end',
-            'status',
-            'institution_id',
-            'specialization_id',
+            'birthdate:date',            
+            [
+                'attribute' => 'institution_id',
+                'value' => $model->institution->name,
+            ],
+            [
+                'attribute' => 'specialization_id',
+                'value' => $model->specialization->code.' - '.$model->specialization->name
+            ],
+            [
+                'attribute' => 'status',
+                'value' => key_exists($model->status, $statuses) ? $statuses[$model->status] : null,
+            ],
+            'budget:boolean',                        
+            'date_start:date',
+            'date_end:date',
         ],
     ]) ?>
 

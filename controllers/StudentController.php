@@ -21,6 +21,18 @@ use yii\web\Response;
 class StudentController extends Controller
 {
     /**
+     * InstitutionController constructor.
+     * @param $id
+     * @param $module
+     * @param Repository $repository
+     * @param array $config
+     */
+    public function __construct($id, $module,
+                                private Repository $repository,
+                                $config = []) {
+        parent::__construct($id, $module, $config);
+    }
+    /**
      * {@inheritdoc}
      */
     public function behaviors()
@@ -67,6 +79,8 @@ class StudentController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),            
+            'specializations' => Specialization::getList(),
+            'statuses' => $this->repository->getStudentStatuses(),
         ]);
     }
 
@@ -104,6 +118,7 @@ class StudentController extends Controller
 
         return $this->render('_form', [
             'model' => $model,
+            'specializations'  => Specialization::getList()
         ]);
     }
 
