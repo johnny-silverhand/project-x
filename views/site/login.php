@@ -24,13 +24,13 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
         <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-
+    <br>
         <?= $form->field($model, 'password')->passwordInput() ?>
-
+    <br>
         <?= $form->field($model, 'rememberMe')->checkbox([
             'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
         ]) ?>
-
+    <br>
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
                 <?= Html::submitButton('Вход', ['class' => 'myBtn myBtn--accent', 'name' => 'login-button']) ?>

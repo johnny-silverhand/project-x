@@ -23,25 +23,30 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $form = ActiveForm::begin(); ?>
 
         <?= $form->field($model, 'fio')->textInput(['maxlength' => 50]) ?>
-
+        <br>
         <?= $form->field($model, 'birthdate')->widget(DatePicker::class, [
             'language' => 'ru',
         ]) ?>
-
+        <br>
         <?= $form->field($model, 'budget')->checkbox() ?>
+        <br>
         <?= $form->field($model, 'orphan')->checkbox() ?>
+        <br>
         <?= $form->field($model, 'employed')->checkbox() ?>
 
+        <br>
         <?= $form->field($model, 'group_id')->dropDownList($groups) ?>
+        <br>
 
         <?= $form->field($model, 'date_start')->widget(DatePicker::class, [
             'language' => 'ru',
         ]) ?>
+        <br>
 
         <?= $form->field($model, 'date_end')->widget(DatePicker::class, [
             'language' => 'ru',
         ]) ?>
-
+        <br>
 
         <div class="form-group">
             <?= Html::submitButton('Сохранить', ['class' => 'myBtn myBtn--accent']) ?>

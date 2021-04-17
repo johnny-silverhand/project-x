@@ -26,15 +26,15 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $form = ActiveForm::begin(); ?>
 
         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
+        <br>
         <?= $form->field($model, 'category')->dropDownList($categories) ?>
-
+        <br>
         <?= $form->field($destination, 'ids')->widget(Select2::class, ['data' => $institutions, 'options' => ['multiple' => true]]) ?>
-
+        <br>
         <?= $form->field($model, 'content')->widget(CKEditor::class) ?>
-
+        <br>
         <?= $form->field($model, 'data')->widget(Select2::class, ['options' => ['multiple' => true], 'pluginOptions' => ['tags' => true, 'tokenSeparators' => [',', ' ']]]) ?>
-
+        <br>
         <div class="form-group">
             <?= Html::submitButton($model->isNewRecord ? 'Отправить' : 'Сохранить', ['class' => 'myBtn myBtn--accent']) ?>
         </div>

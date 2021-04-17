@@ -20,11 +20,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $form = ActiveForm::begin(); ?>
 
         <?= $form->field($model, 'response_id')->textInput() ?>
-
+        <br>
         <?= $form->field($model, 'type')->textInput(['maxlength' => true]) ?>
-
+        <br>
         <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
-
+        <br>
         <div class="form-group">
             <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
         </div>

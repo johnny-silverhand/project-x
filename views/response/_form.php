@@ -34,8 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $form = ActiveForm::begin(); ?>
 
         <?= $form->field($model, 'content')->widget(CKEditor::class) ?>
-
-        <?= $form->field($responseFile, 'id')->fileInput() ?>
+        <br>
 
         <div class="form-group">
             <?= Html::submitButton($model->isNewRecord ? 'Отправить' : 'Сохранить', ['class' => 'myBtn myBtn--accent']) ?>

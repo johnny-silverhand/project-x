@@ -22,9 +22,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'status')->dropDownList($statuses) ?>
-
+    <br>
     <?= $form->field($model, 'employed')->checkbox() ?>
-
+    <br>
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'myBtn myBtn--accent']) ?>
     </div>

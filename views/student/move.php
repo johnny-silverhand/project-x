@@ -23,9 +23,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $form = ActiveForm::begin(); ?>
 
         <?= $form->field($model, 'institution_id')->dropDownList($institutions) ?>
-
+    <br>
         <?= $form->field($model, 'specialization_id')->dropDownList($specializations) ?>
-
+    <br>
         <div class="form-group">
             <?= Html::submitButton('Перевод', ['class' => 'myBtn myBtn--accent']) ?>
         </div>

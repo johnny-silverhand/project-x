@@ -20,9 +20,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $form = ActiveForm::begin(); ?>
 
         <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
-
+        <br>
         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
+        <br>
         <div class="form-group">
             <?= Html::submitButton('Сохранить', ['class' => 'myBtn']) ?>
         </div>

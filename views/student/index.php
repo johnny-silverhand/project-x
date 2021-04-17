@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'institutions' => $institutions,
         'invalidTypes' => $invalidTypes,
     ]); ?>
-
+    <br>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => null,
