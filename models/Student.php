@@ -29,6 +29,10 @@ class Student extends ActiveRecord
 {
     public $institution_id;
     public $specialization_id;
+
+    public $cntBudget = 0;
+    public $cntOrphan = 0;
+    public $cntEmployed = 0;
     /**
      * {@inheritdoc}
      */
@@ -62,6 +66,7 @@ class Student extends ActiveRecord
             'fio' => 'ФИО',
             'birthdate' => 'Дата рождения',
             'budget' => 'Бюджет',
+            'cntBudget' => 'Бюджет',
             'date_start' => 'Дата начала обучения',
             'date_end' => 'Дата конца обучения',
             'status' => 'Статус',
@@ -69,8 +74,10 @@ class Student extends ActiveRecord
             'specialization_id' => 'Направление',
             'group_id' => 'Группа',
             'orphan' => 'Признак сироты',
+            'cntOrphan' => 'Признак сироты',
             'invalid' => 'Инвалидность',
             'employed' => 'Трудоустроен после обучения',
+            'cntEmployed' => 'Трудоустроен после обучения',
         ];
     }
 
