@@ -18,47 +18,87 @@ use dosamigos\datepicker\DatePicker;
 
 <div class="student-search">
 
-    <?php $form = ActiveForm::begin([
-        'action' => ['index'],
-        'method' => 'get',
-        'options' => [
-            'data-pjax' => 1
-        ],
-    ]); ?>
+    <div class="content__formWrapper ">
+        <?php $form = ActiveForm::begin([
+            'action' => ['index'],
+            'method' => 'get',
+            'options' => [
+                'data-pjax' => 1
+            ],
+        ]); ?>
 
-    <?= $form->field($model, 'institution_id')->dropDownList($institutions) ?>
-
-    <?= $form->field($model, 'specialization_id')->dropDownList($specializations) ?>
-
-    <?= $form->field($model, 'fio') ?>
-
-    <?= $form->field($model, 'birthdate')->widget(DatePicker::class, [
-        'language' => 'ru',
-    ]) ?>
-
-    <?= $form->field($model, 'budget')->checkbox() ?>
-
-    <?= $form->field($model, 'date_start')->widget(DatePicker::class, [
-        'language' => 'ru',
-    ]) ?>
-
-    <?= $form->field($model, 'date_end')->widget(DatePicker::class, [
-        'language' => 'ru',
-    ]) ?>
-
-    <?= $form->field($model, 'status')->dropDownList($statuses) ?>
-
-    <?= $form->field($model, 'orphan')->checkbox() ?>
-
-    <?php echo $form->field($model, 'invalid')->dropDownList($invalidTypes) ?>
-
-    <?= $form->field($model, 'employed')->checkbox() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Поиск', ['class' => 'myBtn myBtn--accent']) ?>
-        <?= Html::resetButton('Сброс', ['class' => 'myBtn myBtn--red']) ?>
+            <div>
+                <div class="content__contentForm">
+                    <div>
+                        <?= $form->field($model, 'fio') ?>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="">Дата рождения</label>
+                        <div class="content__dateBox">
+                            <?= $form->field($model, 'birthdateStart')->label('')->widget(DatePicker::class, [
+                                'language' => 'ru',
+                            ]) ?>
+                            <?= $form->field($model, 'birthdateEnd')->label('')->widget(DatePicker::class, [
+                                'language' => 'ru',
+                            ]) ?>
+                        </div>
+                    </div>
+                    <br>
+                    <div>
+                        <?= $form->field($model, 'budget')->checkbox() ?>
+                    </div>
+                </div>
+                <br>
+                <div class="content__contentForm">
+                    <div>
+                        <label for="">Дата обучения</label>
+                        <div class="content__dateBox">
+                            <?= $form->field($model, 'date_start')->label('')->widget(DatePicker::class, [
+                                'language' => 'ru',
+                            ]) ?>
+                            <?= $form->field($model, 'date_end')->label('')->widget(DatePicker::class, [
+                                'language' => 'ru',
+                            ]) ?>
+                        </div>
+                    </div>
+                    <br>
+                    <div>
+                        <?= $form->field($model, 'status')->dropDownList(["" => ""] + $statuses) ?>
+                    </div>
+                    <br>
+                    <div>
+                        <?= $form->field($model, 'orphan')->checkbox() ?>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="content__contentForm">
+                    <div>
+                        <?php echo $form->field($model, 'invalid')->dropDownList(["" => ""] + $invalidTypes) ?>
+                    </div>
+                    <br>
+                    <div>
+                        <?= $form->field($model, 'institution_id')->dropDownList(["" => ""] + $institutions) ?>
+                    </div>
+                    <br>
+                    <div>
+                        <?= $form->field($model, 'specialization_id')->dropDownList(["" => ""] + $specializations) ?>
+                    </div>
+                    <br>
+                    <div>
+                        <?= $form->field($model, 'employed')->checkbox() ?>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="content__buttonWrapper--full">
+                <div class="form-group">
+                    <?= Html::submitButton('Поиск', ['class' => 'myBtn myBtn--accent']) ?>
+                    <?= Html::resetButton('Сброс', ['class' => 'myBtn myBtn--red']) ?>
+                </div>
+            </div>
+            <?php ActiveForm::end(); ?>
     </div>
-
-    <?php ActiveForm::end(); ?>
 
 </div>

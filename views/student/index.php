@@ -17,7 +17,7 @@ use yii\helpers\Html;
 /* @var $institutions array */
 /* @var $invalidTypes array */
 
-$this->title = 'Студенты';
+$this->title = 'Контингент';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="student-index">
@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => null,
-        'layout' => "{summary}\n{toolbar}\n{items}\n{pager}",
+        'layout' => "{summary}<br><br>{toolbar}<br><br>{items}<br><br>{pager}",
         'toolbar'=>[
             '{export}',
             '{toggleData}'

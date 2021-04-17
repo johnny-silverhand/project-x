@@ -19,6 +19,7 @@ class m210416_175506_create_user_table extends Migration
             'email' => $this->string(50)->notNull()->unique()->comment('Email'),
             'password_hash' => $this->string(64)->comment('Хеш пароля'),
             'about' => $this->text()->null()->comment('О себе'),
+            'image' => $this->binary()->defaultValue(null)->comment('Фото'),
         ]);
     }
 
