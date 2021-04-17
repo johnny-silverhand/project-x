@@ -26,7 +26,7 @@ class Role extends ActiveRecord
     {
         return [
             self::STUDENT => 'абитуриент',
-            self::WORKER_SUZ => 'сотрудник СУЗа',
+            self::WORKER_SUZ => 'сотрудник проф. учреждения',
             self::WORKER_DEP => 'сотрудник департамента',
             self::ADMIN => 'администратор сервиса',
         ];

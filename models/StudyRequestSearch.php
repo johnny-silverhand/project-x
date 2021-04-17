@@ -5,6 +5,7 @@ namespace app\models;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\StudyRequest;
+use yii\data\Sort;
 
 /**
  * StudyRequestSearch represents the model behind the search form of `app\models\StudyRequest`.
@@ -43,10 +44,17 @@ class StudyRequestSearch extends StudyRequest
     {
         $query = StudyRequest::find();
 
+        $sort = new Sort();
+        $sort->defaultOrder = [
+            'rate' => SORT_DESC,
+            'score' => SORT_DESC,
+        ];
+
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => $sort,
         ]);
 
         $this->load($params);

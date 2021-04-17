@@ -128,11 +128,15 @@ class StudyRequestController extends Controller
             $student->fio = $model->fio;
             $student->birthdate = $model->birthdate;
             $student->date_start = date('01.09.Y');
-            $student->date_end = date('01.07.2023');
+            $date = new \DateTime();
+            $date->modify('+4 years');
+            $student->date_end = $date->format('01.07.Y');
             $group = Group::find()->andWhere(['institution_id' => $model->institution_id, 'specialization_id' => $model->specialization_id])->one();
             $student->group_id = $group?->id ?: 1;
             $student->status = Repository::STUDENT_WORK;
             $student->budget = $model->budget;
+            $student->invalid = $model->invalid;
+            $student->orphan = $model->orphan;
             $student->save();
             $this->redirect(['institution/view', 'id' => $model->institution_id]);
         }

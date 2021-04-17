@@ -13,9 +13,6 @@ $this->title = 'Главная';
     <?= Html::a('Заявление на поступление', ['study-request/create'], ['class' => 'myBtn myBtn--accent']) ?>
     <br>
     <br>
-    <?= Html::a('ответы', ['response/index'], ['class' => 'myBtn myBtn--accent']) ?>
-    <br>
-    <br>
     <?= Html::a('Специализации', ['specialization/index'], ['class' => 'myBtn myBtn--accent']) ?>
 
 </div>
