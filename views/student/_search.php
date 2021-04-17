@@ -91,9 +91,6 @@ use dosamigos\datepicker\DatePicker;
                     <div>
                         <?= $form->field($model, 'employed')->checkbox() ?>
                     </div>
-                    <div>
-                        <?= $form->field($model, 'mode')->label('Режим отчета')->dropDownList(StudentSearch::getModeList()) ?>
-                    </div>
                 </div>
             </div>
             <br>

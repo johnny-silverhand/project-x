@@ -61,9 +61,9 @@ class StudentController extends Controller
     /**
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex($mode = StudentSearch::DEFAULT_MODE)
     {
-        $searchModel = new StudentSearch();
+        $searchModel = new StudentSearch(['mode' => $mode]);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
