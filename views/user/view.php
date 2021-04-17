@@ -10,7 +10,7 @@ use yii\web\YiiAsset;
 /* @var $canEdit bool */
 /* @var $canEditRoles bool */
 
-$this->title = $model->name;
+$this->title = $model->name . " " . $model->surname;
 $this->params['breadcrumbs'][] = ['label' => 'Пользователи', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 YiiAsset::register($this);
@@ -25,60 +25,48 @@ foreach($model->userRoles as $userRole) {
         ])));    
 }
 ?>
-<div class="user-view">
-    <p class="content__button-wrapper">
-        <?php if($canEditRoles) {
-            echo Html::a('Добавить роль', ['user-role/create', 'userId' => $model->id], ['class' => 'myButton myButton--green']);
-        } ?>        
-        &nbsp;
-        <?php if($canEdit) {
-            echo Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'myButton myButton--blue']);
-        } ?>        
-        <!--&nbsp;
-        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
-            'class' => 'myButton myButton--red',
-            'data' => [
-                'confirm' => 'Вы уверены, что хотите удалить?',
-                'method' => 'post',
-            ],
-        ]) ?>!-->
-    </p>
 
-
-    <div class=" content__item content__top">
-        <p class="content__name"><?= $model->surname ?> <?= $model->name ?></p>
-        <div class="content__line" style="margin-top:10px">
-            <div class="content__avatar-wrapper">
-                <?php
-                $stream = $model->image ? stream_get_contents($model->image) : false;
-                if ($stream) {
-                    $image = 'data:image/jpeg;charset=utf-8;base64,' . base64_encode($stream);
-                    echo Html::img($image, ['style' => '...']);
-                }else {
-                    echo Html::img('media/no_avatar.png');
-                }
-                ?>
-            </div>
-            <div class="content__date">
-                <p class="content__date-label-preview">Роли:</p>
-                <?= $roles ? implode(' ', $roles) : null ?>
-            </div>
-        </div>
-    </div>
-
-    <div class=" content__item price">
-    </div>
-    <div class=" content__item price">
-        <p><?= $model->getAttributeLabel('email') ?>: <span> <?= $model->email ?></span></p>
-    </div>
-    <div class=" content__item price">
-    </div>
-
-    <div class="content__item content__info">
-        <header>О себе:</header>
-        <div class="content__infoMain">
-            <?= $model->about ?>
-        </div>
-    </div>
-
+<div class="content__avatar">
+    <?php
+    $stream = $model->image ? stream_get_contents($model->image) : false;
+    if ($stream) {
+        $image = 'data:image/jpeg;charset=utf-8;base64,' . base64_encode($stream);
+        echo Html::img($image, ['style' => '...']);
+    }else {
+        echo Html::img('media/no_avatar.png');
+    }
+    ?>
 </div>
+<br>
+<ul class="content__listInfo">
+    <li>
+        <span><b>Роль:&nbsp;</b></span> <span><?= $roles ? implode(' ', $roles) : null ?></span>
+    </li>
+    <li>
+        <span><b>Email:&nbsp;</b></span> <span><?= $model->email ?></span>
+    </li>
+    <li>
+        <span><b>Учреждение:&nbsp;</b></span>
+        <span><?= $model->institution->name ?></span>
+    </li>
+    <li>
+        <span><b>О себе:&nbsp;</b></span>
+        <span><?= $model->about ?></span>
+    </li>
+</ul>
+<br>
+    <?php if($canEditRoles) {
+        echo Html::a('Добавить роль', ['user-role/create', 'userId' => $model->id], ['class' => 'myBtn myBtn--accent']);
+    } ?>
+    &nbsp;
+    <?php if($canEdit) {
+        echo Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'myBtn myBtn--accent']);
+    } ?>
+    <!--&nbsp;
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
+        'class' => 'myBtn myBtn--red',
+        'data' => [
+            'confirm' => 'Вы уверены, что хотите удалить?',
+            'method' => 'post',
+        ],
+    ]) ?>!-->
