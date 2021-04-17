@@ -19,15 +19,15 @@ YiiAsset::register($this);
 <div class="request-view">
 
     <p>
-        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'myBtn myBtn--accent']) ?>
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
+            'class' => 'myBtn myBtn--red',
             'data' => [
                 'confirm' => 'Вы действительно хотите удалить запрос?',
                 'method' => 'post',
             ],
         ]) ?>
-        <?= Html::a('Сформировать ответ', ['response/create', 'request_id' => $model->id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Сформировать ответ', ['response/create', 'request_id' => $model->id], ['class' => 'myBtn']) ?>
     </p>
     <br>
 

@@ -20,7 +20,7 @@ use yii\web\View;
 
     <br>
     <p>
-        <?= Html::a('Добавить сведения', ['institution-data/create', 'institution_id' => $searchModel->institution_id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить сведения', ['institution-data/create', 'institution_id' => $searchModel->institution_id], ['class' => 'myBtn myBtn--accent']) ?>
     </p>
     <br>
 

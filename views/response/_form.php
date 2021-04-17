@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($responseFile, 'id')->fileInput() ?>
 
         <div class="form-group">
-            <?= Html::submitButton($model->isNewRecord ? 'Отправить' : 'Сохранить', ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton($model->isNewRecord ? 'Отправить' : 'Сохранить', ['class' => 'myBtn myBtn--accent']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>

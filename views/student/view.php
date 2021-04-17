@@ -20,9 +20,9 @@ YiiAsset::register($this);
 
 
     <p>
-        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'myBtn myBtn--accent']) ?>
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
+            'class' => 'myBtn myBtn--red',
             'data' => [
                 'confirm' => 'Вы действительно хотите удалить этого студента?',
                 'method' => 'post',

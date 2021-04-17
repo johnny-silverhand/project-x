@@ -2,38 +2,46 @@
 
 namespace app\controllers;
 
+use app\models\ResponseFile;
+use app\models\ResponseFileSearch;
+use app\models\User;
+use app\services\FileService;
 use Yii;
-use app\models\Student;
-use app\models\StudentSearch;
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\web\Response;
 
 /**
- * Class StudentController
+ * Class ResponseFileController
  * @package app\controllers
  * @author Dmitrii N <https://github.com/johnny-silverhand>
  */
-class StudentController extends Controller
+class ResponseFileController extends Controller
 {
+    public function __construct($id, $module,
+                                private FileService $fileService,
+                                $config = []) {
+        parent::__construct($id, $module, $config);
+    }
+
     /**
      * {@inheritdoc}
      */
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'access' => [
-                    'class' => AccessControl::class,
-                    'rules' => [
-                        [
-                            'allow' => true,
-                            'roles' => ['@'],
-                        ],
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
                     ],
                 ],
+            ],
+            'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
@@ -45,9 +53,9 @@ class StudentController extends Controller
     /**
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
-        $searchModel = new StudentSearch();
+        $searchModel = new ResponseFileSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -61,7 +69,7 @@ class StudentController extends Controller
      * @return string
      * @throws NotFoundHttpException
      */
-    public function actionView($id)
+    public function actionView($id): string
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -71,9 +79,9 @@ class StudentController extends Controller
     /**
      * @return string|Response
      */
-    public function actionCreate(): Response|string
+    public function actionCreate(): string|Response
     {
-        $model = new Student();
+        $model = new ResponseFile();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -89,7 +97,7 @@ class StudentController extends Controller
      * @return string|Response
      * @throws NotFoundHttpException
      */
-    public function actionUpdate($id): Response|string
+    public function actionUpdate($id): string|Response
     {
         $model = $this->findModel($id);
 
@@ -116,12 +124,27 @@ class StudentController extends Controller
 
     /**
      * @param $id
-     * @return Student|null
+     * @return Response
      * @throws NotFoundHttpException
      */
-    protected function findModel($id): ?Student
+    public function actionDownload($id): Response
     {
-        if (($model = Student::findOne($id)) !== null) {
+        $model = $this->findModel($id);
+        $filePath = $this->fileService->getFilePath($model);
+        return Yii::$app->response->sendFile($filePath, $model->id, [
+            'mimeType' => $model->type,
+            'inline' => true
+        ]);
+    }
+
+    /**
+     * @param $id
+     * @return ResponseFile|null
+     * @throws NotFoundHttpException
+     */
+    protected function findModel($id): ResponseFile|null
+    {
+        if (($model = ResponseFile::findOne($id)) !== null) {
             return $model;
         }
 

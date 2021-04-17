@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="institution-index">
 
     <p>
-        <?= Html::a('Добавить организацию', ['create'], ['class' => 'myBtn']) ?>
+        <?= Html::a('Добавить организацию', ['create'], ['class' => 'myBtn myBtn--accent']) ?>
     </p>
     <br>
 

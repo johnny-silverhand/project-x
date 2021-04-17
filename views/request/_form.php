@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'data')->widget(Select2::class, ['options' => ['multiple' => true], 'pluginOptions' => ['tags' => true, 'tokenSeparators' => [',', ' ']]]) ?>
 
         <div class="form-group">
-            <?= Html::submitButton($model->isNewRecord ? 'Отправить' : 'Сохранить', ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton($model->isNewRecord ? 'Отправить' : 'Сохранить', ['class' => 'myBtn myBtn--accent']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>

@@ -1,24 +1,19 @@
 <?php
 
-use app\models\StudentSearch;
+use app\models\ResponseFileSearch;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\web\View;
 
 /* @var $this View */
-/* @var $searchModel StudentSearch */
+/* @var $searchModel ResponseFileSearch */
 /* @var $dataProvider ActiveDataProvider */
 
-$this->title = 'Студенты';
+$this->title = 'Файлы';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="student-index">
-
-    <p>
-        <?= Html::a('Добавить студента', ['create'], ['class' => 'myBtn myBtn--accent']) ?>
-    </p>
-    <br>
+<div class="response-file-index">
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -26,14 +21,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'fio',
-            'birthdate',
-            'budget:boolean',
-            'date_start',
-            //'date_end',
-            //'status',
-            //'institution_id',
-            //'specialization_id',
+            'response_id',
+            'type',
+            'content:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

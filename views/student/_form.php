@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'specialization_id')->textInput() ?>
 
         <div class="form-group">
-            <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton('Сохранить', ['class' => 'myBtn myBtn--accent']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>

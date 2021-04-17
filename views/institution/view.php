@@ -18,9 +18,9 @@ YiiAsset::register($this);
 <div class="institution-view">
 
     <p>
-        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'myBtn myBtn--accent']) ?>
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
+            'class' => 'myBtn myBtn--red',
             'data' => [
                 'confirm' => 'Вы действительно хотите удалить организацию?',
                 'method' => 'post',
