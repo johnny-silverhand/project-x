@@ -91,6 +91,9 @@ use dosamigos\datepicker\DatePicker;
                     <div>
                         <?= $form->field($model, 'employed')->checkbox() ?>
                     </div>
+                    <div>
+                        <?= $form->field($model, 'mode')->dropDownList(StudentSearch::getModeList())->hiddenInput()->label('') ?>
+                    </div>
                 </div>
             </div>
             <br>

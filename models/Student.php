@@ -73,7 +73,7 @@ class Student extends ActiveRecord
             'institution_id' => 'Учреждение',
             'specialization_id' => 'Направление',
             'group_id' => 'Группа',
-            'orphan' => 'Признак сироты',
+            'orphan' => 'Является сиротой',
             'cntOrphan' => 'Признак сироты',
             'invalid' => 'Инвалидность',
             'employed' => 'Трудоустроен после обучения',
