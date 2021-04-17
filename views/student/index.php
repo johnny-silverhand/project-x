@@ -52,13 +52,19 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'institution_id',
                 'value' => function (Student $model) use ($institutions) {
-                    return $institutions[$model->institution_id] ?? "";
+                    return $institutions[$model->group->institution_id] ?? "";
+                },
+            ],
+            [
+                'attribute' => 'group_id',
+                'value' => function(Student $student) {
+                    return $student->group->code;
                 },
             ],
             [
                 'attribute' => 'specialization_id',
                 'value' => function (Student $model) use ($specializations) {
-                    return $specializations[$model->specialization_id] ?? "";
+                    return $specializations[$model->group->specialization_id] ?? "";
                 }
             ],
             [

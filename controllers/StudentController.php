@@ -6,6 +6,7 @@ use app\models\Institution;
 use Yii;
 use app\models\Student;
 use app\models\Specialization;
+use app\models\Group;
 use app\repositories\Repository;
 use app\models\StudentSearch;
 use yii\filters\AccessControl;
@@ -95,16 +96,16 @@ class StudentController extends Controller
     public function actionCreate(int $institutionId): Response|string
     {
         $model = new Student();
-        $model->institution_id = $institutionId;
         $model->status = Repository::STUDENT_WORK;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['institution/view', 'id' => $model->institution_id]);
+            return $this->redirect(['institution/view', 'id' => $model->group->institution_id]);
         }
 
         return $this->render('_form', [
             'model' => $model,
-            'specializations'  => Specialization::getList()
+            //'specializations' => Specialization::getList(),
+            'groups' => Group::getList($institutionId, true),
         ]);
     }
 

@@ -12,7 +12,7 @@ use yii\widgets\DetailView;
 
 $this->title = $model->fio;
 $this->params['breadcrumbs'][] = ['label' => 'Учреждения', 'url' => ['institution/index']];
-$this->params['breadcrumbs'][] = ['label' => $model->institution->name, 'url' => ['institution/view', 'id' => $model->institution->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->group->institution->name, 'url' => ['institution/view', 'id' => $model->group->institution->id]];
 $this->params['breadcrumbs'][] = $this->title;
 YiiAsset::register($this);
 ?>
@@ -36,11 +36,11 @@ YiiAsset::register($this);
             'birthdate:date',
             [
                 'attribute' => 'institution_id',
-                'value' => $model->institution->name,
+                'value' => $model->group->institution->name,
             ],
             [
                 'attribute' => 'specialization_id',
-                'value' => $model->specialization->code.' - '.$model->specialization->name
+                'value' => $model->group->specialization->code.' - '.$model->group->specialization->name
             ],
             [
                 'attribute' => 'status',
