@@ -22,7 +22,10 @@ use yii\db\ActiveRecord;
  * @property UserRole[] $userRoles
  * @property Institution $institution
  * @property bool $isAdmin
- */
+ * @property bool $isWorkerSuz
+ * @property bool $isStudent
+ * @property bool $isWorkerDep
+**/
 class User extends ActiveRecord
 {
 
