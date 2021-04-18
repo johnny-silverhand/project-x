@@ -68,6 +68,9 @@ class UserController extends Controller {
      */
     public function actionIndex() {
         $searchModel = new UserSearch();
+        if (!$this->user->isAdmin) {
+            $searchModel->id = $this->user->id;
+        }
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -78,7 +81,7 @@ class UserController extends Controller {
 
     public function actionView(int $id) {
         $model = $this->findModel($id);
-        if ($model->id != $this->user->id && !$model->isAdmin) {
+        if ($model->id != $this->user->id && !$this->user->isAdmin) {
             throw new ForbiddenHttpException('У Вас нет доступа к данному профилю!');
         }
         return $this->render('view', [
