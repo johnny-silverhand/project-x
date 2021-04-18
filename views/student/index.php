@@ -121,7 +121,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'cnt',
-                'label' => 'Количество',
+                'label' => 'Количество студентов',
                 'visible' => $searchModel->mode == StudentSearch::CNT_MODE,
             ],
         ],
