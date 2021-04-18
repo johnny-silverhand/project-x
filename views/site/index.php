@@ -15,10 +15,10 @@ $this->title = 'Главная';
         if(!$user->isStudent) {
             echo Html::a('Учреждения', ['institution/index'], ['class' => 'myBtn myBtn--accent']), ' ';
             if(!$user->isWorkerDep) {
-                echo Html::a('Отчет по контенгенту', ['student/index'], ['class' => 'myBtn myBtn--accent']), ' ';
+                echo Html::a('Отчет по контингенту', ['student/index'], ['class' => 'myBtn myBtn--accent']), ' ';
             }
             if(!$user->isWorkerSuz) {
-                echo Html::a('Отчет департамента', ['student/index', 'mode' => \app\models\StudentSearch::CNT_MODE], ['class' => 'myBtn myBtn--accent']);
+                echo Html::a('Отчет департамента', ['student/index', 'mode' => \app\models\StudentSearch::CNT_MODE], ['class' => 'myBtn myBtn--accent']),' ';
             }
             if($user->isAdmin) {
                 echo Html::a('Специализации', ['specialization/index'], ['class' => 'myBtn myBtn--accent']), ' ';
