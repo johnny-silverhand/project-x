@@ -134,7 +134,7 @@ class StudyRequestController extends Controller
             $date = new \DateTime();
             $date->modify('+4 years');
             $student->date_end = $date->format('01.07.Y');
-            $group = Group::find()->andWhere(['institution_id' => $model->institution_id, 'specialization_id' => $model->specialization_id])->one();
+            $group = Group::find()->andWhere(['institution_id' => $model->institution_id, 'specialization_id' => $model->specialization_id])->orderBy('code')->one();
             $student->group_id = $group?->id ?: 1;
             $student->status = Repository::STUDENT_WORK;
             $student->budget = $model->budget;

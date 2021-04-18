@@ -22,10 +22,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($model, 'fio')->textInput(['maxlength' => 50]) ?>
+        <?= $form->field($model, 'fio')->textInput(['maxlength' => 50, 'autocomplete' => 'off']) ?>
         <br>
         <?= $form->field($model, 'birthdate')->widget(DatePicker::class, [
             'language' => 'ru',
+            'options' => [
+                'autocomplete' => 'off'
+            ],
         ]) ?>
         <br>
         <?= $form->field($model, 'budget')->checkbox() ?>
@@ -38,11 +41,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'date_start')->widget(DatePicker::class, [
             'language' => 'ru',
+            'options' => [
+                'autocomplete' => 'off'
+            ],
         ]) ?>
         <br>
 
         <?= $form->field($model, 'date_end')->widget(DatePicker::class, [
             'language' => 'ru',
+            'options' => [
+                'autocomplete' => 'off'
+            ],
         ]) ?>
         <br>
 

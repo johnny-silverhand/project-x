@@ -15,10 +15,13 @@ use dosamigos\datepicker\DatePicker;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'fio')->textInput(['maxlength' => 50]) ?>
+    <?= $form->field($model, 'fio')->textInput(['maxlength' => 50, 'autocomplete' => 'off']) ?>
     <br>
     <?= $form->field($model, 'birthdate')->widget(DatePicker::class, [
         'language' => 'ru',
+        'options' => [
+            'autocomplete' => 'off'
+        ],
     ]) ?>
     <br>
     <?= $form->field($model, 'institution_id')->dropDownList($institutions) ?>
@@ -31,7 +34,7 @@ use dosamigos\datepicker\DatePicker;
     <br>
     <?= $form->field($model, 'invalid')->dropDownList($invalidTypes) ?>
     <br>
-    <?= $form->field($model, 'score')->textInput() ?>
+    <?= $form->field($model, 'score')->textInput(['autocomplete' => 'off']) ?>
     <br>
     <?= $form->field($model, 'rate')->dropDownList([
         1 => 1,

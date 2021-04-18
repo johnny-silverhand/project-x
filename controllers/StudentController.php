@@ -6,12 +6,14 @@ use app\models\Institution;
 use Yii;
 use yii\web\UploadedFile;
 use app\models\Student;
+use app\models\User;
 use app\models\Specialization;
 use app\models\Group;
 use app\repositories\Repository;
 use app\models\StudentSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
@@ -23,6 +25,7 @@ use yii\web\Response;
  */
 class StudentController extends Controller
 {
+    private ?User $user = null;
     /**
      * InstitutionController constructor.
      * @param $id
@@ -33,6 +36,7 @@ class StudentController extends Controller
     public function __construct($id, $module,
                                 private Repository $repository,
                                 $config = []) {
+        $this->user = Yii::$app->user->getIsGuest() ? null : Yii::$app->user->identity->getUser();
         parent::__construct($id, $module, $config);
     }
     /**
@@ -47,6 +51,13 @@ class StudentController extends Controller
                     [
                         'allow' => true,
                         'roles' => ['@'],
+                        'matchCallback' => fn() => $this->user && ($this->user->isAdmin || $this->user->isWorkerSuz),
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['view', 'index'],
+                        'roles' => ['@'],
+                        'matchCallback' => fn() => $this->user && $this->user->isWorkerDep,
                     ],
                 ],
             ],
@@ -65,6 +76,9 @@ class StudentController extends Controller
     public function actionIndex($mode = StudentSearch::DEFAULT_MODE)
     {
         $searchModel = new StudentSearch(['mode' => $mode]);
+        if($this->user && $this->user->isWorkerSuz) {
+            $searchModel->institution_id = $this->user->institution_id;
+        }
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -84,8 +98,12 @@ class StudentController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        if ($this->user->isWorkerSuz && $model->group->institution_id != $this->user->institution_id) {
+            throw new ForbiddenHttpException('У Вас нет доступа к контингенту данного учреждения!');
+        }
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
             'specializations' => Specialization::getList(),
             'statuses' => $this->repository->getStudentStatuses(),
         ]);
@@ -118,6 +136,9 @@ class StudentController extends Controller
      */
     public function actionCreate(int $institutionId): Response|string
     {
+        if ($this->user->isWorkerSuz && $institutionId != $this->user->institution_id) {
+            throw new ForbiddenHttpException('У Вас нет доступа к контингенту данного учреждения!');
+        }
         $model = new Student();
         $model->status = Repository::STUDENT_WORK;
         $file = UploadedFile::getInstanceByName('file');
@@ -161,6 +182,9 @@ class StudentController extends Controller
     public function actionUpdate($id): Response|string
     {
         $model = $this->findModel($id);
+        if ($this->user->isWorkerSuz && $model->group->institution_id != $this->user->institution_id) {
+            throw new ForbiddenHttpException('У Вас нет доступа к контингенту данного учреждения!');
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -175,6 +199,9 @@ class StudentController extends Controller
     public function actionMove($id): string|Response
     {
         $model = $this->findModel($id);
+        if ($this->user->isWorkerSuz && $model->group->institution_id != $this->user->institution_id) {
+            throw new ForbiddenHttpException('У Вас нет доступа к контингенту данного учреждения!');
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -188,6 +215,9 @@ class StudentController extends Controller
     public function actionDeduction($id): string|Response
     {
         $model = $this->findModel($id);
+        if ($this->user->isWorkerSuz && $model->group->institution_id != $this->user->institution_id) {
+            throw new ForbiddenHttpException('У Вас нет доступа к контингенту данного учреждения!');
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -206,7 +236,11 @@ class StudentController extends Controller
      */
     public function actionDelete($id): Response
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        if ($this->user->isWorkerSuz && $model->group->institution_id != $this->user->institution_id) {
+            throw new ForbiddenHttpException('У Вас нет доступа к контингенту данного учреждения!');
+        }
+        $model->delete();
 
         return $this->redirect(['index']);
     }
