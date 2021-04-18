@@ -13,7 +13,6 @@ $this->title = 'Главная';
 <div class="site-index">    
     <?php
         if(!$user->isStudent) {
-            echo Html::a('Учреждения', ['institution/index'], ['class' => 'myBtn myBtn--accent']), ' ';
             if(!$user->isWorkerDep) {
                 echo Html::a('Отчет по контингенту', ['student/index'], ['class' => 'myBtn myBtn--accent']), ' ';
             }

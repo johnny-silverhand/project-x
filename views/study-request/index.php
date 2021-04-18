@@ -29,8 +29,13 @@ use yii\widgets\Pjax;
                     return Html::a($model->fio, ['study-request/view', 'id' => $model->id], ['data-pjax' => 0]);
                 },
                 'format' => 'raw',
+                'visible' => $canEdit
             ],
-            'birthdate:date',
+            [
+                'attribute' => 'birthdate',
+                'format' => 'date',
+                'visible' => $canEdit
+            ],            
             [
                 'attribute' => 'specialization_id',
                 'value' => function(app\models\StudyRequest $model) {

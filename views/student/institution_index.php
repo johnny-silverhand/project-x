@@ -40,6 +40,7 @@ use yii\web\View;
                     return Html::a($student->fio, ['student/view', 'id' => $student->id], ['data-pjax' => 0]);
                 },
                 'format' => 'raw',
+                'visible' => $canEdit
             ],
             [
                 'attribute' => 'specialization_id',
