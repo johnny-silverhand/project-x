@@ -86,6 +86,7 @@ class InstitutionController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'canEdit' => !$this->user->isWorkerDep
         ]);
     }
 
@@ -102,6 +103,7 @@ class InstitutionController extends Controller
         }
         return $this->render('view', [
             'model' => $model,
+            'canEdit' => !$this->user->isWorkerDep,
             'studentGrid' => $this->renderStudents($model),
             'requestGrid' => $this->renderRequests($model),
             'dataGrid' => $this->renderData($model)
@@ -117,6 +119,7 @@ class InstitutionController extends Controller
             'groups' => Group::getList($model->id),
             'specializations' => Specialization::getList(),
             'statuses' => $this->repository->getStudentStatuses(),
+            'canEdit' => !$this->user->isWorkerDep,
         ]);
     }
     private function renderRequests(Institution $model): string
@@ -129,6 +132,7 @@ class InstitutionController extends Controller
             'groups' => Group::getList($model->id),
             'specializations' => Specialization::getList(),
             'statuses' => $this->repository->getStudentStatuses(),
+            'canEdit' => !$this->user->isWorkerDep,
         ]);
     }
 

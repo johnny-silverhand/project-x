@@ -8,7 +8,8 @@ use yii\widgets\DetailView;
 
 /* @var $this View */
 /* @var $model Student */
-/* @var $statuses */
+/* @var $statuses array */
+/* @var $canEdit bool */
 
 $this->title = $model->fio;
 $this->params['breadcrumbs'][] = ['label' => 'Учреждения', 'url' => ['institution/index']];
@@ -20,14 +21,15 @@ YiiAsset::register($this);
 <div class="student-view">
 
 
-
-    <p>
-        <?= Html::a('Приказ о переводе', ['move', 'id' => $model->id], ['class' => 'myBtn myBtn--grey']) ?>
-        <?= Html::a('Приказ об отчислении', ['deduction', 'id' => $model->id], ['class' => 'myBtn myBtn--red']) ?>
-        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'myBtn myBtn--accent']) ?>
-    </p>
+    <?php if($canEdit) { ?>
+        <p>
+            <?= Html::a('Приказ о переводе', ['move', 'id' => $model->id], ['class' => 'myBtn myBtn--grey']) ?>
+            <?= Html::a('Приказ об отчислении', ['deduction', 'id' => $model->id], ['class' => 'myBtn myBtn--red']) ?>
+            <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'myBtn myBtn--accent']) ?>
+        </p>    
 
         <br>
+    <?php } ?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [

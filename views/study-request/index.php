@@ -7,6 +7,7 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\StudyRequestSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $canEdit bool */
 
 //$this->title = 'Поданные заявления';
 //$this->params['breadcrumbs'][] = $this->title;
@@ -55,6 +56,7 @@ use yii\widgets\Pjax;
                         return Html::a('<span class="glyphicon glyphicon-check"></span>', $url, ['title' => 'Оформить приказ о приеме',]);
                     },
                 ],
+                'visible' => $canEdit
             ],
         ],
     ]); ?>

@@ -13,17 +13,21 @@ use yii\web\View;
 /* @var $specializations array */
 /* @var $statuses array */
 /* @var $groups array */
+/* @var $canEdit bool */
 
 //$this->title = 'Студенты';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="student-index">
 
-    <p>
-        <?= Html::a('Приказ о зачислении', ['student/create', 'institutionId' => $searchModel->institution_id], ['class' => 'myBtn myBtn--accent']) ?>
-        <?= Html::a('Загрузка неформализованных данных', ['student/raw', 'institutionId' => $searchModel->institution_id], ['class' => 'myBtn myBtn--accent']) ?>
-    </p>
-    <br>
+    <?php
+        if($canEdit) { ?>
+            <p>
+                <?= Html::a('Приказ о зачислении', ['student/create', 'institutionId' => $searchModel->institution_id], ['class' => 'myBtn myBtn--accent']) ?>
+                <?= Html::a('Загрузка неформализованных данных', ['student/raw', 'institutionId' => $searchModel->institution_id], ['class' => 'myBtn myBtn--accent']) ?>
+            </p>
+            <br>
+    <?php } ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

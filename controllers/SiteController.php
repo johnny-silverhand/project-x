@@ -76,7 +76,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $institutions = Institution::find()->andFilterWhere(['id' => $this->user->institution_id])->all();
+        $query = Institution::find()->orderBy('id');
+        if($this->user->isWorkerSuz) {
+            $query->andWhere(['id' => $this->user->institution_id]);
+        }
+        $institutions = $query->all();
         $data = [];
         /* @var $institutions Institution[] */
         foreach ($institutions as $institution) {

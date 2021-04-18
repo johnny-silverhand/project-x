@@ -10,8 +10,7 @@ use app\models\User;
 
 $this->title = 'Главная';
 ?>
-<div class="site-index">
-    <?= Html::a('Заявление на поступление', ['study-request/create'], ['class' => 'myBtn myBtn--accent']) ?>
+<div class="site-index">    
     <?php
         if(!$user->isStudent) {
             echo Html::a('Учреждения', ['institution/index'], ['class' => 'myBtn myBtn--accent']), ' ';
@@ -24,6 +23,8 @@ $this->title = 'Главная';
             if($user->isAdmin) {
                 echo Html::a('Специализации', ['specialization/index'], ['class' => 'myBtn myBtn--accent']), ' ';
             }
+        } else {
+            echo Html::a('Заявление на поступление', ['study-request/create'], ['class' => 'myBtn myBtn--accent']);
         }
     ?>
 <?php 

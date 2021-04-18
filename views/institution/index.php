@@ -10,6 +10,7 @@ use yii\web\View;
 /* @var $this View */
 /* @var $searchModel InstitutionSearch */
 /* @var $dataProvider ActiveDataProvider */
+/* @var $canEdit bool*/
 
 $this->title = 'Учреждения';
 $this->params['breadcrumbs'][] = $this->title;
@@ -17,7 +18,12 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="institution-index">
 
     <p>
-        <?= Html::a('Добавить учреждение', ['create'], ['class' => 'myBtn myBtn--accent']) ?>
+        <?php 
+            if($canEdit) {
+                echo Html::a('Добавить учреждение', ['create'], ['class' => 'myBtn myBtn--accent']);
+            }
+        ?>
+        
     </p>
     <br>
 
@@ -37,7 +43,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'is_admin:boolean',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'visible' => $canEdit
+            ],
         ],
     ]); ?>
 

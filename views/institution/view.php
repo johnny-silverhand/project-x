@@ -11,6 +11,7 @@ use yii\widgets\DetailView;
 /* @var $studentGrid string */
 /* @var $requestGrid string */
 /* @var $dataGrid string */
+/* @var $canEdit bool */
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Учреждения', 'url' => ['index']];
@@ -20,14 +21,17 @@ YiiAsset::register($this);
 <div class="institution-view">
 
     <p>
-        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'myBtn myBtn--accent']) ?>
-        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
+        <?php 
+            if($canEdit) {
+            echo Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'myBtn myBtn--accent']), ' ',
+                 Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'myBtn myBtn--red',
             'data' => [
                 'confirm' => 'Вы действительно хотите удалить организацию?',
                 'method' => 'post',
             ],
-        ]) ?>
+        ]);
+        } ?>
     </p>
     <br>
 
@@ -47,9 +51,5 @@ YiiAsset::register($this);
 <br>
 
     <?= $requestGrid ?>
-
-    <!--<h2>Другие сведения</h2>
-
-    <?= $dataGrid ?>
-    --!>
+    
 </div>

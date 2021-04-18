@@ -106,6 +106,7 @@ class StudentController extends Controller
             'model' => $model,
             'specializations' => Specialization::getList(),
             'statuses' => $this->repository->getStudentStatuses(),
+            'canEdit' => !$this->user->isWorkerDep
         ]);
     }
     private function getFileContent($file): string {
