@@ -1,0 +1,46 @@
+.myBtn {
+  background-color: $accent-sec;
+  border: none;
+  outline: none;
+  height: 34px;
+  padding: 0 20px;
+  border-radius: 5px;
+  transition: 0.3s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  &:hover {
+    background-color: $accent-sec-dark;
+    color: white !important;
+    text-decoration: none;
+  }
+
+  &--accent {
+    background-color: $accent;
+    font-weight: 500;
+    color: white;
+    &:hover {
+      background-color: $accent-dark;
+    }
+  }
+
+  &--grey{
+    background-color: #ccc;
+    color: black;
+    &:hover {
+      background-color: #bcbcbc;
+      color: black !important;
+      text-decoration: none;
+    }
+  }
+  &--red{
+    background-color: #f1354e;
+    color: white;
+    &:hover{
+      background-color: #d72239;
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "name": "hackathoncp2021",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel serve pages/*.html --port 1111 --no-cache  ",
+    "build": "parcel build --no-content-hash pages/*.html ./dist/ --public-url ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kalinss/hackathonCP2021.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kalinss/hackathonCP2021/issues"
+  },
+  "homepage": "https://github.com/Kalinss/hackathonCP2021#readme",
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.2",
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-asset-copier": "^1.1.0",
+    "parcel-plugin-custom-dist-structure": "^1.1.16",
+    "sass": "^1.32.8"
+  },
+  "customDistStructure": {
+    "config": {
+      ".js": "js",
+      "media": [
+        ".jpg",
+        ".png",
+        ".woff2"
+      ],
+      ".fileExtension": "folder/in/dist",
+      "folder/in/dist": [
+        ".file",
+        ".extensions"
+      ]
+    },
+    "options": {
+      "development": true
+    }
+  },
+  "dependencies": {
+    "@amcharts/amcharts4": "^4.10.17",
+    "@amcharts/amcharts4-fonts": "^4.0.1",
+    "@amcharts/amcharts4-geodata": "^4.1.19",
+    "D": "^1.0.0",
+    "jquery": "^3.6.0",
+    "prettier": "^2.2.1"
+  }
+}

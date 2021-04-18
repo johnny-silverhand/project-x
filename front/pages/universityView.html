@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<!--  СТРАНИЦА ПРОСМОТРА СТУДЕНТОВ У УНИВЕРА-->
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width" />
+
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+
+    <!-- Optional theme -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+      integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+      crossorigin="anonymous"
+    />
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../styles/index.scss" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="wrapper header__wrapper">
+        <div class=" header__headerContent">
+          <div class="logo header__logo">
+            <a href="" title="IT animals">
+              <img src="../media/logo.jpg" alt="" />
+            </a>
+          </div>
+          <ul class="header__list">
+            <li class="header__list-item">
+              <a href="" class="header__list-link">Главная</a>
+            </li>
+            <li class="header__list-item">
+              <a href="" class="header__list-link">Запросы</a>
+            </li>
+            <li class="header__list-item">
+              <a href="" class="header__list-link">Учреждения</a>
+            </li>
+            <li class="header__list-item">
+              <a href="" class="header__list-link">Пользователи</a>
+            </li>
+
+            <li class="header__list-item">
+              <a href="" class="black header__list-link">Выход</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="wrapper">
+        <div class="pageTitle content__pageTitle">
+          <h1><b>Учащиеся</b></h1>
+          <br />
+          <p>
+            Учащиеся "Большой техникум"
+          </p>
+        </div>
+          <div class="content__minContent content__notFilter ">
+            <div class="content__tableWrapper">
+              <div class="content__btnSizeTable"></div>
+            <table class="table table-sm myTable">
+              <thead class="content__stikyFilter">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Учащийся</th>
+                  <th scope="col">Направление</th>
+                  <th scope="col">Статус</th>
+                  <th scope="col">День рождения</th>
+                  <th scope="col">Форма</th>
+                </tr>
+                <tr class="">
+                  <th scope="col"><input type="text" class="form-control myForm"></th>
+                  <th scope="col"><input type="text" class=" form-control myForm"></th>
+                  <th scope="col"><input type="text" class=" form-control myForm"></th>
+                  <th scope="col"><input type="text" class=" form-control myForm"></th>
+                  <th scope="col"><input type="text" class=" form-control myForm"></th>
+                  <th scope="col"><input type="text" class=" form-control myForm"></th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr>
+                  <th scope="row">1</th>
+                  <td><a href="/user/5">Иванов И.И</a></td>
+                  <td>ИТ</td>
+                  <td>Учится</td>
+                  <td>01.01.2000</td>
+                  <td>Бюджет</td>
+                </tr>
+                <tr>
+                  <th scope="row">1</th>
+                  <td><a href="/user/5">Иванов И.И</a></td>
+                  <td>ИТ</td>
+                  <td>Учится</td>
+                  <td>01.01.2000</td>
+                  <td>Бюджет</td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="../js/index.js"></script>
+  </body>
+</html>
