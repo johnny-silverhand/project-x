@@ -129,10 +129,10 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->register()) {
             return $this->redirect(['login']);
         }
-        $institutions = Institution::find()->select('name')->asArray()->indexBy('id')->column();
+        $institutions = Institution::getList();
         return $this->render('registration', [
             'model' => $model,
-            'institutions' => $institutions,
+            'institutions' => [null => 'Нет'] + $institutions,
             'roles' => Role::getGlobalList(),
         ]);
     }

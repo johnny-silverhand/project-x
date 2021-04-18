@@ -37,7 +37,7 @@ use yii\widgets\ListView;
         </li>
         <li>
             <span><b>Профессиональная организация:&nbsp;</b></span>
-            <span><?= $model->institution->name ?></span>
+            <span><?= $model->institution ? $model->institution->name : 'отсутствует' ?></span>
         </li>
         <li class="card__about">
             <span><b>О себе:&nbsp;</b></span>

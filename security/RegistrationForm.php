@@ -60,7 +60,7 @@ class RegistrationForm extends Model
     /**
      * @var int
      */
-    public int $institution_id = 0;
+    public $institution_id = 0;
 
     /**
      * @var int
@@ -73,7 +73,7 @@ class RegistrationForm extends Model
     public function rules()
     {
         return [
-            [['email', 'surname', 'name', 'password', 'password_confirm', 'institution_id'], 'required'],
+            [['email', 'surname', 'name', 'password', 'password_confirm'], 'required'],
             [['email', 'surname', 'name'], 'string', 'max' => 50],
             [['about'], 'string'],
             [['password'], 'string', 'min' => 6, 'max' => 50],

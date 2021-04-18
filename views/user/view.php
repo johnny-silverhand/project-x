@@ -17,12 +17,13 @@ YiiAsset::register($this);
 
 $roles = [];
 foreach($model->userRoles as $userRole) {
-    $roles[] = Html::tag('div', Html::tag('p', $userRole->role->name) .
-    Html::tag('span', Html::a('удалить', ['user-role/delete', 'id' => $userRole->id],
+    $roles[] = Html::tag('span', Html::tag('span', $userRole->role->name) /*.
+    Html::tag('span', Html::a(' X', ['user-role/delete', 'id' => $userRole->id],
         [
             'data-confirm' => 'Вы уверены, что хотите удалить эту роль?',
             'data-method' => 'POST',
-        ])));
+        ]))*/
+    );     
 }
 ?>
 
@@ -47,7 +48,7 @@ foreach($model->userRoles as $userRole) {
     </li>
     <li>
         <span><b>Профессиональная организация:&nbsp;</b></span>
-        <span><?= $model->institution->name ?></span>
+        <span><?= $model->institution ? $model->institution->name : 'отсутствует' ?></span>
     </li>
     <li>
         <span><b>О себе:&nbsp;</b></span>

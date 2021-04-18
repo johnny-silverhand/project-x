@@ -39,9 +39,15 @@ AppAsset::register($this);
                 <li class="header__list-item">
                     <?= Html::a('Главная', ['site/index'], ['class' => 'header__list-link']) ?>
                 </li>
-                <li class="header__list-item">
-                    <?= Html::a('Учреждения', ['institution/index'], ['class' => 'header__list-link']) ?>
-                </li>
+                <?php
+                    $webUser = Yii::$app->getUser();
+                    $user = $webUser->isGuest ? null : $webUser->getIdentity()->getUser();
+                    if($user && !$user->isStudent) { ?>
+                        <li class="header__list-item">
+                            <?= Html::a('Учреждения', ['institution/index'], ['class' => 'header__list-link']) ?>
+                        </li>
+                    <?php }
+                ?>                
                 <?php if(!Yii::$app->getUser()->isGuest): ?>
                 <li class="header__list-item header__list-item--exit">
                     <div class="header__avatar">

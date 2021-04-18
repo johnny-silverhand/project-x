@@ -26,8 +26,9 @@ $this->title = 'Главная';
             }
         }
     ?>
-
-<?= $this->registerJs("window.dashboardData = " . json_encode($data), View::POS_HEAD); ?>
-
-<div id="chart">
-</div>
+<?php 
+    if(!$user->isStudent) {
+        $this->registerJs("window.dashboardData = " . json_encode($data), View::POS_HEAD);        
+        echo Html::tag('div', ' ', ['id' => 'chart']);
+    }
+?>
