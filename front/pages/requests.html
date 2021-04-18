@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width" />
+
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+
+    <!-- Optional theme -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+      integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+      crossorigin="anonymous"
+    />
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../styles/index.scss" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="wrapper header__wrapper">
+        <div class=" header__headerContent">
+          <div class="logo header__logo">
+            <a href="" title="IT animals">
+              <img src="../media/logo.jpg" alt="" />
+            </a>
+          </div>
+          <ul class="header__list">
+            <li class="header__list-item">
+              <a href="" class="header__list-link">Главная</a>
+            </li>
+            <li class="header__list-item">
+              <a href="" class="header__list-link">Запросы</a>
+            </li>
+            <li class="header__list-item">
+              <a href="" class="header__list-link">Учреждения</a>
+            </li>
+            <li class="header__list-item">
+              <a href="" class="header__list-link">Пользователи</a>
+            </li>
+
+            <li class="header__list-item">
+              <a href="" class="black header__list-link">Пользователи</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="wrapper">
+        <div class="pageTitle content__pageTitle">
+          <h1><b>Запросы</b></h1>
+          <br />
+          <p>
+            Здесь вы можете посмотреть ваши прекрасные запросы от наших
+            прекрасных менистерств <br />
+            бла бла бла блабла
+          </p>
+        </div>
+        <div class="content__contentWrapper">
+          <div class="contentFilters">
+            <form class="contentFilters__form" action="">
+              <div class="contentFilters__form--group">
+                <label for="">Наименование</label>
+                <input class="form-control myForm" type="text" />
+              </div>
+              <div class="contentFilters__form--group">
+                <label for="">Категория</label>
+                <input class="form-control myForm" type="text" />
+              </div>
+              <div class="contentFilters__form--group">
+                <label for="">Статус</label>
+                <input class="form-control myForm" type="text" />
+              </div>
+              <button class="myBtn myBtn--accent">Редактировать</button>
+              <button class="myBtn myBtn--red">Удалить</button>
+            </form>
+          </div>
+          <div class="content__minContent">
+            <div class="content__content-4c">
+              <div class="card card__request">
+                <ul class="card__list-body">
+                  <!--                            title не забудь!-->
+                  <div class="card__name">
+                    Запрос на пирожки в неверляндию, где коты пьют сок из мух
+                    Запрос на пирожки в неверляндию.
+                  </div>
+                  <div class="card__category">
+                    <span><b>Категория:&nbsp;</b></span
+                    ><span>пирожки</span>
+                  </div>
+                </ul>
+                <div class="card__btnWrapper card__btnWrapper--between">
+                  <div>
+                    <span><b>Дата:&nbsp;</b></span
+                    ><span>10.10.2021</span>
+                  </div>
+                  <button class="myBtn myBtn--accent  ">Просмотр</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="../js/index.js"></script>
+  </body>
+</html>
